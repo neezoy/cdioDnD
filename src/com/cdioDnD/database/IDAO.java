@@ -33,5 +33,5 @@ public interface IDAO {
     void removeFromGroup(int characterid, int groupid);
     int[] getGroupIDs(int characterid);
     int[] getMembers(int groupid);
-
+    //TODO: Do we need delete functions and editing functions for each variable, or would this be done in a complete overwrite function which changes all the desired variables?
 }
