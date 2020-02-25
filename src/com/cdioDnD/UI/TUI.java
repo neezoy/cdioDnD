@@ -30,9 +30,9 @@ public class TUI implements ITUI {
         }
     }
 
-    //@Override
-    //public void createUser() {
-        //System.out.println("Please ");
-    //}
+    @Override
+    public void createUser() {
+        System.out.println("Please ");
+    }
 
 }
