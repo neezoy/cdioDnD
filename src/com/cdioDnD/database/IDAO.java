@@ -3,40 +3,35 @@ package com.cdioDnD.database;
 public interface IDAO {
     //First we define functions to create and get rows in our database 'Data' tables.
     void createUser(String username, String Password, int role);
-    int getUserID();
-    UserDTO getUser();
+    int getUserID(String username);
+    UserDTO getUser(int userid);
 
-    void createCharacter(String name, int str, int n);
-    int getCharacterID();
-    CharacterDTO getCharacter();
+    void createCharacter(String charactername, int str, int n);
+    int getCharacterID(String charactername);
+    CharacterDTO getCharacter(int characterid);
 
-    void createItem();
-    int getItemID();
-    ItemDTO getItem();
+    void createItem(String itemname, String description, double weight);
+    int getItemID(String itemname);
+    ItemDTO getItem(int itemid);
 
-    void createGroup();
-    int getGroupID();
-    GroupDTO getGroup();
+    void createGroup(String groupname, String description);
+    int getGroupID(String groupname);
+    GroupDTO getGroup(int groupid);
     
     //Now we define functions to create and delete rows in the relational tables.
-    void addChar(int userid, int characterid);
-    void removeChar();
-    int[] getCharIDs();
+    void addCharacter(int userid, int characterid);
+    void removeCharacter(int characterid); //Only needs characterid because a character can only be owned by one person.
+    int[] getCharacterIDs(int userid);
 
-    void addItem();
-    void addItems();
-    void removeItem();
-    void removeItems();
-    int[] getItemIDs();
+    void addItem(int characterid, int itemid);
+    void addItems(int characterid, int itemid, int amount);
+    void removeItem(int characterid, int itemid);
+    void removeItems(int characterid, int itemid, int amount);
+    int[] getItemIDs(int characterid);
 
-    void addToGroup();
-    void removeFromGroup();
-    int[] getGroupIDs();
-    int[] getMembers();
-
-    //Lastly we define funtions which edit or delete data from the 'Data' tables.
-
-    void deleteUser(int userid);
-    void changeUsername(int userid, String username);
+    void addToGroup(int characterid, int groupid);
+    void removeFromGroup(int characterid, int groupid);
+    int[] getGroupIDs(int characterid);
+    int[] getMembers(int groupid);
 
 }
