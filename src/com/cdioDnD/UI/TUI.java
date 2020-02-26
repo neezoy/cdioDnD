@@ -1,6 +1,7 @@
 package com.cdioDnD.UI;
 import com.cdioDnD.database.IDAO;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class TUI implements ITUI {
@@ -24,9 +25,18 @@ public class TUI implements ITUI {
         System.out.println("6 Delete");
         System.out.println("7 Terminate Program");
 
-        System.out.println("Please input your selection here: ");
-        int menuItem = scanner.nextInt();
-        System.out.println("\n");
+        System.out.println("Please input the number of your selection here: ");
+        while (true) {
+            try {
+                int menuItem = scanner.nextInt();
+
+            } catch (Exception e) {
+                System.err.println("Please try again, input has to be a number");
+
+            }
+
+            System.out.println("\n");
+        }
 
         switch (menuItem) {
             case 1:
@@ -34,9 +44,9 @@ public class TUI implements ITUI {
         }
     }
 
-    //@Override
-    //public void createUser() {
-        //System.out.println("Please ");
-    //}
+    @Override
+    public void createUser() {
+        System.out.println("Please ");
+    }
 
 }
