@@ -10,13 +10,84 @@ public class DAO implements IDAO {
     @Override
     public boolean createUser(UserDTO user, Connection c) {
         try {
-
-            String query = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
+            String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, user.getName());
             statement.setString(2, user.getPassword());
-            statement.setString(3, user.getrole());
+            statement.setInt(3, user.getRole());
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public UserDTO getUserFromName(String username, Connection c) {
+        UserDTO user = new UserDTO();
+        try {
+            String query = "SELECT * FROM User WHERE Username = ?;";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, Username);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return null;
+            }
+            user.setId(result.getInt("UserID"));
+            user.setName(username);
+            user.setPassword(result.getString("Password"));
+            user.setRoles(result.getInt("Roles"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return user;
+    }
+
+    @Override
+    public UserDTO getUser(int userid, Connection c) {
+        UserDTO user = new UserDTO();
+        try {
+            String query = "SELECT * FROM User WHERE UserID = "+userid+";";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return null;
+            }
+            user.setId(userid);
+            user.setName(result.getString("Username"));
+            user.setPassword(result.getString("Password"));
+            user.setRoles(result.getInt("Roles"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return user;
+    }
+
+    @Override
+    public boolean createCharacter(CharacterDTO character, Connection c) {
+        try {
+
+            String query = "INSERT INTO user (Cname, Location, Strength, BonusCapacity) VALUES (?, ?, ?,?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setString(1, character.getName());
+            statement.setString(2, character.getLocation());
+            statement.setInt(3, character.getStrength());
+            statement.setInt(4, character.getBonus);
 
             statement.execute();
             c.commit();
@@ -29,43 +100,123 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public int getUserID(String username, Connection c) {
-        return 0;
-    }
-
-    @Override
-    public UserDTO getUser(int userid, Connection c) {
-        return null;
-    }
-
-    @Override
-    public boolean createCharacter(CharacterDTO character, Connection c) {
-
-    }
-
-    @Override
     public int getCharacterID(String charactername, Connection c) {
-        return 0;
+        int ID;
+        try {
+            String query = "SELECT CharacterID FROM Character WHERE charactername = ?;";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, charactername);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return 0;
+            }
+
+            ID = result.getInt("CharacterID");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return ID;
     }
 
     @Override
     public CharacterDTO getCharacter(int characterid, Connection c) {
-        return null;
+        CharacterDTO character = new CharacterDTO();
+        try {
+            String query = "SELECT * FROM Character WHERE CharacterID = "+characterid+";";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return null;
+            }
+            character.setId(characterid);
+            character.setName(result.getString("CName"));
+            character.setLocation(result.getString("Location"));
+            character.setStrength(result.getInt("Strength"));
+            character.setBonus(result.getInt("BonusCapacity"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return character;
     }
 
     @Override
     public boolean createItem(ItemDTO item, Connection c) {
+        try {
 
+            String query = "INSERT INTO Item (ItemName, Weight, Description) VALUES (?, ?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setString(1, item.getName());
+            statement.setDouble(2, item.getWeight());
+            statement.setString(3, item.getDescription());
+
+            statement.execute();
+            c.commit();
+
+
+        } catch (SQLException p) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public int getItemID(String itemname, Connection c) {
-        return 0;
+        int ID;
+        try {
+            String query = "SELECT ItemID FROM Item WHERE ItemName = ?;";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, itemname);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return 0;
+            }
+
+            ID = result.getInt("ItemID");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return ID;
     }
 
     @Override
     public ItemDTO getItem(int itemid, Connection c) {
-        return null;
+        ItemDTO item = new ItemDTO();
+        try {
+            String query = "SELECT * FROM Item WHERE ItemID = "+itemid+";";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return null;
+            }
+            item.setId(itemid);
+            item.setName(result.getString("ItemName"));
+            item.setWeight(result.getDouble("Weight"));
+            item.setDescription(result.getString("Description"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return item;
     }
 
     @Override

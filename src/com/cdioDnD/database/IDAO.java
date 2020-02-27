@@ -6,7 +6,7 @@ import java.sql.Connection;
 public interface IDAO {
     //First we define functions to create and get rows in our database 'Data' tables.
     boolean createUser(UserDTO user, Connection c); //should this just be userDTO
-    int getUserID(String username, Connection c);
+    UserDTO getUserFromName(String username, Connection c);
     UserDTO getUser(int userid, Connection c);
 
     boolean createCharacter(CharacterDTO character, Connection c);
