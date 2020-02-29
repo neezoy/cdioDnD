@@ -1,9 +1,6 @@
 package com.cdioDnD.database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DAO implements IDAO {
@@ -44,6 +41,7 @@ public class DAO implements IDAO {
             user.setName(username);
             user.setPassword(result.getString("Password"));
             user.setRoles(result.getInt("Roles"));
+            user.setCharcters(getCharacterIDs(user.getID()),c);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +67,7 @@ public class DAO implements IDAO {
             user.setName(result.getString("Username"));
             user.setPassword(result.getString("Password"));
             user.setRoles(result.getInt("Roles"));
-
+            user.setCharcters(getCharacterIDs(userid,c));
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -235,18 +233,61 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean addCharacter(int UserDTO, int CharacterDTO, Connection c) {
+    public boolean addCharacter(UserDTO user, int characterid, Connection c) {
+        try {
 
+            String query = "INSERT INTO CharacterRelation (CharacterID, UserID) VALUES (?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setInt(1, characterid);
+            statement.setInt(2, user.getID());
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        user.addCharacter(characterid);
+        return true;
     }
 
     @Override
     public boolean removeCharacter(int characterid, Connection c) {
+        //TODO: I'm not sure about whether we should remove the character from the UserDTO. We probably should, to keep the data consistent.
+        try {
 
+            String query = "DELETE FROM CharacterRelation WHERE CharacterID ='"+characterid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
-    public int[] getCharacterIDs(int userid, Connection c) {
-        return new int[0];
+    public ArrayList getCharacterIDs(int userid, Connection c) {
+        ArrayList characterids = new ArrayList();
+        try {
+            String query = "SELECT CharacterID FROM CharacterRelation WHERE UserID ='"+userid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+            c.commit();
+            while(result.next()){
+                characterids.add(result.getInt("CharacterID"));
+            }
+
+        } catch (SQLException p) {
+            return characterids;
+        }
+        return characterids;
     }
 
     @Override
@@ -275,23 +316,81 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean addToGroup(int characterid, int groupid, Connection c) {
+    public boolean addToGroup(CharacterDTO character, GroupDTO group, Connection c) {
+        try {
 
+            String query = "INSERT INTO GroupRelation (GroupID, CharacterID) VALUES (?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setInt(1, group.getID());
+            statement.setInt(2, character.getID());
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        group.addCharacter(character.getID());
+        character.addGroup(group.getID());
+        return true;
     }
 
     @Override
     public boolean removeFromGroup(int characterid, int groupid, Connection c) {
+        //TODO: I'm not sure about whether we should remove the relation from the DTO. We probably should, to keep the data consistent.
+        try {
 
+            String query = "DELETE FROM GroupRelation WHERE CharacterID = '"+characterid+"' AND GroupID = '"+groupid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
-    public int[] getGroupIDs(int characterid, Connection c) {
-        return new int[0];
+    public ArrayList getGroupIDs(int characterid, Connection c) {
+        ArrayList groupids = new ArrayList();
+        try {
+            String query = "SELECT GroupID FROM GroupRelation WHERE CharacterID ='"+characterid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+            c.commit();
+            while(result.next()){
+                groupids.add(result.getInt("GroupID"));
+            }
+
+        } catch (SQLException p) {
+            return groupids;
+        }
+        return groupids;
     }
 
     @Override
-    public int[] getMembers(int groupid, Connection c) {
-        return new int[0];
+    public ArrayList getMembers(int groupid, Connection c) {
+        ArrayList characterids = new ArrayList();
+        try {
+            String query = "SELECT CharacterID FROM GroupRelation WHERE GroupID ='"+groupid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+            c.commit();
+            while(result.next()){
+                characterids.add(result.getInt("CharacterID"));
+            }
+
+        } catch (SQLException p) {
+            return characterids;
+        }
+        return characterids;
     }
 
     @Override

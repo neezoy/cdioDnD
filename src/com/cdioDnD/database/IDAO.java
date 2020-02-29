@@ -1,6 +1,7 @@
 package com.cdioDnD.database;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 
 public interface IDAO {
@@ -22,9 +23,9 @@ public interface IDAO {
     GroupDTO getGroup(int groupid, Connection c);
     
     //Now we define functions to create and delete rows in the relational tables.
-    boolean addCharacter(int UserDTO, int CharacterDTO, Connection c);
+    boolean addCharacter(UserDTO user, int characterid, Connection c);
     boolean removeCharacter(int characterid, Connection c); //Only needs characterid because a character can only be owned by one person.
-    int[] getCharacterIDs(int userid, Connection c);
+    ArrayList getCharacterIDs(int userid, Connection c);
 
     boolean addItem(int characterid, int itemid, Connection c);
     boolean addItems(int characterid, int itemid, int amount, Connection c);
@@ -32,10 +33,10 @@ public interface IDAO {
     boolean removeItems(int characterid, int itemid, int amount, Connection c);
     int[] getItemIDs(int characterid, Connection c);
 
-    boolean addToGroup(int characterid, int groupid, Connection c);
+    boolean addToGroup(CharacterDTO character, GroupDTO group, Connection c);
     boolean removeFromGroup(int characterid, int groupid, Connection c);
-    int[] getGroupIDs(int characterid, Connection c);
-    int[] getMembers(int groupid, Connection c);
+    ArrayList getGroupIDs(int characterid, Connection c);
+    ArrayList getMembers(int groupid, Connection c);
 
     //Lastly we define functions which deletes or overwrites data from the database.
     boolean deleteUser(int userid, Connection c);
