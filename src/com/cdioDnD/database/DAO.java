@@ -32,7 +32,7 @@ public class DAO implements IDAO {
         try {
             String query = "SELECT * FROM User WHERE Username = ?;";
             PreparedStatement statement = c.prepareStatement(query);
-            statement.setString(1, Username);
+            statement.setString(1, username);
             ResultSet result = statement.executeQuery();
 
             c.commit();
