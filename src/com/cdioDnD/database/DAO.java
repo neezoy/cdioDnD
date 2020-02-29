@@ -219,17 +219,71 @@ public class DAO implements IDAO {
 
     @Override
     public boolean createGroup(GroupDTO group, Connection c) {
+        try {
+            String query = "INSERT INTO Group (GroupName, Description) VALUES (?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setString(1, group.getGroupName());
+            statement.setString(2, group.getDescription());
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+        return true;
 
     }
 
     @Override
     public int getGroupID(String groupname, Connection c) {
-        return 0;
+        int ID;
+        try {
+            String query = "SELECT GroupID FROM Group WHERE groupID = ?;";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, groupname);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return 0;
+            }
+
+            ID = result.getInt("GroupID");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return ID;
+
     }
 
     @Override
     public GroupDTO getGroup(int groupid, Connection c) {
-        return null;
+        GroupDTO item = new GroupDTO();
+        try {
+            String query = "SELECT * FROM Group WHERE GroupID = "+groupid+";";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            c.commit();
+
+            if (!result.next()) {
+                return null;
+            }
+            item.setId(groupid);
+            item.setName(result.getString("GroupName"));
+            item.setDescription(result.getString("Description"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return item;
+
     }
 
     @Override
