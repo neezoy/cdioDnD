@@ -22,7 +22,7 @@ public interface IDAO {
     GroupDTO getGroup(int groupid, Connection c);
     
     //Now we define functions to create and delete rows in the relational tables.
-    boolean addCharacter(int userid, int characterid, Connection c);
+    boolean addCharacter(int UserDTO, int CharacterDTO, Connection c);
     boolean removeCharacter(int characterid, Connection c); //Only needs characterid because a character can only be owned by one person.
     int[] getCharacterIDs(int userid, Connection c);
 

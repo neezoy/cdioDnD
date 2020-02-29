@@ -213,9 +213,9 @@ public class DAO implements IDAO {
             item.setDescription(result.getString("Description"));
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
+        e.printStackTrace();
+        return null;
+    }
         return item;
     }
 
@@ -235,7 +235,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean addCharacter(int userid, int characterid, Connection c) {
+    public boolean addCharacter(int UserDTO, int CharacterDTO, Connection c) {
 
     }
 
