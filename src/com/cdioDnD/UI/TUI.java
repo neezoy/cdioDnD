@@ -35,6 +35,7 @@ public class TUI implements ITUI {
 
                 System.out.println("Please input the number of your selection here: ");
                 menuItem = scanner.nextInt();
+                System.out.println("\n");
 
             } catch (InputMismatchException e) {
 
@@ -42,7 +43,6 @@ public class TUI implements ITUI {
 
             }
 
-            System.out.println("\n");
             switch (menuItem) {
                 case 1:
                     create();
@@ -65,19 +65,21 @@ public class TUI implements ITUI {
                 System.out.println("4 Create Group");
                 System.out.println("5 Return To Previous Menu");
                 System.out.println("Please input the number of your selection here: ");
+                System.out.println("\n");
+
             } catch (InputMismatchException e) {
                 System.err.println("Please try again, input has to be a number");
             }
 
-            System.out.println("\n");
 
             switch (menuItem) {
-                case 5: showMenu();
-                    break;
+
 
             }
         }
     }
+
+
 
 
 
