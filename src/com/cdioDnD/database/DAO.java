@@ -1,4 +1,5 @@
 package com.cdioDnD.database;
+import com.cdioDnD.dataTypes.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -449,7 +450,19 @@ public class DAO implements IDAO {
 
     @Override
     public boolean deleteUser(int userid, Connection c) {
+        try {
 
+            String query = "DELETE FROM User WHERE UserID ='"+userid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -469,7 +482,19 @@ public class DAO implements IDAO {
 
     @Override
     public boolean deleteItem(int itemid, Connection c) {
+        try {
 
+            String query = "DELETE FROM Item WHERE ItemID ='"+itemid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -479,6 +504,17 @@ public class DAO implements IDAO {
 
     @Override
     public boolean deleteGroup(int groupid, Connection c) {
+        try {
+            String query = "DELETE FROM Group WHERE GroupID ='"+groupid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
 
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 }
