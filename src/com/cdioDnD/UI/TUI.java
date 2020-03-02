@@ -125,5 +125,12 @@ public class TUI implements ITUI {
 
     }
 
+    public void view () {
+
+
+    }
+
+
+
 
 }
