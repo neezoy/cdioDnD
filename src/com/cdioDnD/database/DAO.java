@@ -1,5 +1,6 @@
 package com.cdioDnD.database;
 import com.cdioDnD.dataTypes.*;
+import com.sun.xml.internal.ws.resources.UtilMessages;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -467,23 +468,66 @@ public class DAO implements IDAO {
 
     @Override
     public boolean overwriteUser(UserDTO user, Connection c) {
+        try {
 
+            String query = "UPDATE User SET Username = ?, Password = ?, Roles = ? WHERE UserID = '"+user.getID()+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getPassword());
+            statement.setInt(3, user.getRole());
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public boolean overwriteCharacter(CharacterDTO character, Connection c) {
+        try {
 
+            String query = "UPDATE Character SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '"+character.getID()+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, character.getName());
+            statement.setString(2, character.getLocation());
+            statement.setInt(3, character.getStrength());
+            statement.setInt(4, character.getBonusCapacity());
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public boolean overwriteItem(ItemDTO item, Connection c) {
+        try {
 
+            String query = "UPDATE Item SET ItemName = ?, Weight = ?, Description = ? WHERE ItemID = '"+item.getID()+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, item.getName());
+            statement.setDouble(2, item.getWeight());
+            statement.setString(3,  item.getDescription());
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public boolean deleteItem(int itemid, Connection c) {
         try {
-
             String query = "DELETE FROM Item WHERE ItemID ='"+itemid+"'";
             PreparedStatement statement = c.prepareStatement(query);
 
@@ -499,7 +543,20 @@ public class DAO implements IDAO {
 
     @Override
     public boolean overwriteGroup(GroupDTO group, Connection c) {
+        try {
+            String query = "UPDATE Group SET GrouName = ?, Description = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '"+character.getID()+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, group.getName());
+            statement.setString(2, group.getDescription());
 
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
