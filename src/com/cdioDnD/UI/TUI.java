@@ -5,9 +5,12 @@ import javax.swing.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class TUI implements ITUI {
     IDAO dao;
     Scanner scanner;
+    int menuItem;
+
 
     public TUI(IDAO dao) {
         this.dao = dao;
@@ -20,7 +23,7 @@ public class TUI implements ITUI {
 
         while (true) {
             try {
-                int menuItem = scanner.nextInt();
+                scanner = new Scanner(System.in);
                 System.out.println("Welcome to DND Forum");
                 System.out.println("1 Create");
                 System.out.println("2 Add");
@@ -31,6 +34,8 @@ public class TUI implements ITUI {
                 System.out.println("7 Terminate Program");
 
                 System.out.println("Please input the number of your selection here: ");
+                menuItem = scanner.nextInt();
+                System.out.println("\n");
 
             } catch (InputMismatchException e) {
 
@@ -38,32 +43,87 @@ public class TUI implements ITUI {
 
             }
 
-            System.out.println("\n");
+            switch (menuItem) {
+                case 1:
+                    create();
+                    break;
+
+            }
         }
 
-//        switch (menuItem) {
-//            case 1:
-//
-//        }
     }
 
-    @Override
+//    @Override
     public void create() {
         while (true) {
             try {
-                int menuItem = scanner.nextInt();
                 System.out.println("You've chosen 'Create': ");
                 System.out.println("1 Create User");
                 System.out.println("2 Create Character");
                 System.out.println("3 Create Item");
                 System.out.println("4 Create Group");
+                System.out.println("5 Return To Previous Menu");
                 System.out.println("Please input the number of your selection here: ");
+                menuItem = scanner.nextInt();
+                System.out.println("\n");
+
             } catch (InputMismatchException e) {
                 System.err.println("Please try again, input has to be a number");
             }
 
+
+            switch (menuItem) {
+
+
+            }
         }
-        System.out.println("\n");
     }
+
+    public void add () {
+        while (true) {
+            try {
+                System.out.println("You've Chosen 'Add': ");
+                System.out.println("2 Add Character To User");
+                System.out.println("3 Add Item To Character");
+                System.out.println("4 Add Group To Character\"");
+                System.out.println("5 Return To Previous Menu");
+                System.out.println("Please input the number of your selection here: ");
+                menuItem = scanner.nextInt();
+                System.out.println("\n");
+
+            } catch (InputMismatchException e) {
+                System.err.println("Please try again, input has to be a number");
+            }
+
+            switch (menuItem) {
+
+            }
+        }
+
+    }
+
+    public void remove () {
+        while (true) {
+            try {
+                System.out.println("You've Chosen 'Remove': ");
+                System.out.println("2 Remove Character To User");
+                System.out.println("3 Remove Item To Character");
+                System.out.println("4 Remove Group To Character\"");
+                System.out.println("5 Return To Previous Menu");
+                System.out.println("Please input the number of your selection here: ");
+                menuItem = scanner.nextInt();
+                System.out.println("\n");
+
+            } catch (InputMismatchException e) {
+                System.err.println("Please try again, input has to be a number");
+            }
+
+            switch (menuItem) {
+
+            }
+        }
+
+    }
+
 
 }
