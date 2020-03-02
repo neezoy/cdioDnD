@@ -19,7 +19,6 @@ public class TUI implements ITUI {
 
     @Override
     public void showMenu() {
-        scanner = new Scanner(System.in);
 
         while (true) {
             try {
@@ -35,7 +34,7 @@ public class TUI implements ITUI {
 
                 System.out.println("Please input the number of your selection here: ");
                 menuItem = scanner.nextInt();
-                System.out.println("\n");
+                System.out.print("\n");
 
             } catch (InputMismatchException e) {
 
@@ -54,7 +53,7 @@ public class TUI implements ITUI {
     }
 
 //    @Override
-    public void create() {
+    public void createMenu() {
         while (true) {
             try {
                 System.out.println("You've chosen 'Create': ");
@@ -65,7 +64,7 @@ public class TUI implements ITUI {
                 System.out.println("5 Return To Previous Menu");
                 System.out.println("Please input the number of your selection here: ");
                 menuItem = scanner.nextInt();
-                System.out.println("\n");
+                System.out.print("\n");
 
             } catch (InputMismatchException e) {
                 System.err.println("Please try again, input has to be a number");
@@ -79,17 +78,17 @@ public class TUI implements ITUI {
         }
     }
 
-    public void add () {
+    public void addMenu () {
         while (true) {
             try {
                 System.out.println("You've Chosen 'Add': ");
                 System.out.println("2 Add Character To User");
                 System.out.println("3 Add Item To Character");
-                System.out.println("4 Add Group To Character\"");
+                System.out.println("4 Add Group To Character");
                 System.out.println("5 Return To Previous Menu");
                 System.out.println("Please input the number of your selection here: ");
                 menuItem = scanner.nextInt();
-                System.out.println("\n");
+                System.out.print("\n");
 
             } catch (InputMismatchException e) {
                 System.err.println("Please try again, input has to be a number");
@@ -102,17 +101,17 @@ public class TUI implements ITUI {
 
     }
 
-    public void remove () {
+    public void removeMenu () {
         while (true) {
             try {
                 System.out.println("You've Chosen 'Remove': ");
-                System.out.println("2 Remove Character To User");
-                System.out.println("3 Remove Item To Character");
-                System.out.println("4 Remove Group To Character\"");
-                System.out.println("5 Return To Previous Menu");
+                System.out.println("1 Remove Character From User");
+                System.out.println("2 Remove Item From Character");
+                System.out.println("3 Remove Group From Character");
+                System.out.println("4 Return To Previous Menu");
                 System.out.println("Please input the number of your selection here: ");
                 menuItem = scanner.nextInt();
-                System.out.println("\n");
+                System.out.print("\n");
 
             } catch (InputMismatchException e) {
                 System.err.println("Please try again, input has to be a number");
@@ -125,8 +124,30 @@ public class TUI implements ITUI {
 
     }
 
-    public void view () {
+    public void viewMenu () {
+        while (true) {
+            try {
+                System.out.println("You've Chosen 'View': ");
+                System.out.println("1 View All Characters");
+                System.out.println("2 View All Items");
+                System.out.println("3 View All Groups");
+                System.out.println("4 View One Character");
+                System.out.println("5 View One Item");
+                System.out.println("6 View One Group");
+                System.out.println("7 Return To Previous Menu");
+                System.out.println("Please input the number of your selection here: ");
+                menuItem = scanner.nextInt();
+                System.out.print("\n");
 
+            } catch (InputMismatchException e) {
+                System.err.println("Please try again, input has to be a number");
+            }
+
+            switch (menuItem) {
+
+            }
+
+        }
 
     }
 
