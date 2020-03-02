@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class UserDTO implements IUserDTO{
 
-    String username;
-    String password;
+    private String username;
+    private String password;
+    private ArrayList<ICharacterDTO> characterList = new ArrayList<ICharacterDTO>();
 
     public UserDTO(String username, String password){
         this.username=username;
@@ -14,16 +15,18 @@ public class UserDTO implements IUserDTO{
 
     @Override
     public String getUser() {
-        return null;
+        return username;
     }
 
     @Override
     public ArrayList<ICharacterDTO> getCharacterList() {
-        return null;
+        return characterList;
     }
 
     @Override
     public void addCharactar(ICharacterDTO character) {
+        characterList.add(character);
+
 
     }
 

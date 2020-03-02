@@ -19,7 +19,7 @@ public class CharacterDTO implements ICharacterDTO {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
