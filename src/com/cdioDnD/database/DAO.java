@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DAO implements IDAO {
+
     @Override
     public boolean createUser(UserDTO user, Connection c) {
         try {
@@ -43,7 +44,6 @@ public class DAO implements IDAO {
             user.setName(username);
             user.setPassword(result.getString("Password"));
             user.setRoles(result.getInt("Roles"));
-            user.setCharcters(getCharacterIDs(user.getID()),c);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +69,6 @@ public class DAO implements IDAO {
             user.setName(result.getString("Username"));
             user.setPassword(result.getString("Password"));
             user.setRoles(result.getInt("Roles"));
-            user.setCharcters(getCharacterIDs(userid,c));
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -225,7 +224,7 @@ public class DAO implements IDAO {
             String query = "INSERT INTO Group (GroupName, Description) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
-            statement.setString(1, group.getGroupName());
+            statement.setString(1, group.getName());
             statement.setString(2, group.getDescription());
 
             statement.execute();
@@ -494,7 +493,7 @@ public class DAO implements IDAO {
             statement.setString(1, character.getName());
             statement.setString(2, character.getLocation());
             statement.setInt(3, character.getStrength());
-            statement.setInt(4, character.getBonusCapacity());
+            statement.setInt(4, character.getBonus());
             statement.execute();
             c.commit();
 
