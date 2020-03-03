@@ -4,21 +4,33 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public interface ICharacterDTO {
+//id
+    void setID(int id);
+    int getID();
 
 //name
     void setName(String name);
     String getName();
 
+    //Strength
+    void setStrength(int strength);
+    int getStrength();
+
+    //BonusCapacity
+    void setBonus(int bonuscapacity);
+    int getBonus();
+
+
 //Items
     ArrayList<IItemDTO> getItemsList();
-    void addItem(String name);
-    void removeItem(String name);
+    void addItem(IItemDTO item);
+    void removeItem(IItemDTO item);
 
 
 //Groups
     ArrayList<IGroupDTO> getGroupList();
-    void addGroup(String name);
-    void removeGroup(String name);
+    void addGroup(IGroupDTO group);
+    void removeGroup(IGroupDTO group);
 
 
 

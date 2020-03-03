@@ -1,33 +1,54 @@
 package com.cdioDnD.dataTypes;
 
 public class ItemDTO implements IItemDTO {
-    String name;
-    String description;
-    double weight;
+    private int id;
+    private String name;
+    private String description;
+    private double weight;
 
     public ItemDTO(String name, String description, double weight){
-        this.name = name;
-        this.description = description;
-        this.weight= weight;
+        setName(name);
+        setDescription(description);
+        setWeight(weight);
+    }
+
+    @Override
+    public int getID() {
+        return id;
+    }
+
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
-    public String getWeight() {
-        return null;
+    public void setName(String name) {
+        this.name=name;
+    }
+
+    @Override
+    public double getWeight() {
+        return weight;
+    }
+
+    @Override
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return description;
     }
 
     @Override
     public void setDescription(String description) {
-
+        this.description=description;
     }
 }
