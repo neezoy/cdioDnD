@@ -1,6 +1,4 @@
 package com.cdioDnD.UI;
-import com.cdioDnD.dataTypes.GroupDTO;
-import com.cdioDnD.dataTypes.UserDTO;
 import com.cdioDnD.database.IDAO;
 
 import javax.swing.*;
@@ -20,7 +18,7 @@ public class TUI implements ITUI {
     }
 
     @Override
-    public void showMenu() {
+    public int showMenu() {
 
         while (true) {
             try {
@@ -55,7 +53,7 @@ public class TUI implements ITUI {
     }
 
 //    @Override
-    public Object createMenu() {
+    public void createMenu() {
         while (true) {
             try {
                 System.out.println("You've chosen 'Create': ");
@@ -70,8 +68,8 @@ public class TUI implements ITUI {
 
             } catch (InputMismatchException e) {
                 System.err.println("Please try again, input has to be a number");
-            } return new UserDTO("Banan", "1234 ");
-            return new GroupDTO("XD", "1234");
+            }
+
 
             switch (menuItem) {
 
