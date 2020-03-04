@@ -53,7 +53,7 @@ public class TUI implements ITUI {
     }
 
 //    @Override
-    public void createMenu() {
+    public Object createMenu() {
         while (true) {
             try {
                 System.out.println("You've chosen 'Create': ");
@@ -68,7 +68,7 @@ public class TUI implements ITUI {
 
             } catch (InputMismatchException e) {
                 System.err.println("Please try again, input has to be a number");
-            }
+            } //return new
 
 
             switch (menuItem) {
