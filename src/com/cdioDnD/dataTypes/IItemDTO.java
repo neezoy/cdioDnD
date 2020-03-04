@@ -1,10 +1,17 @@
 package com.cdioDnD.dataTypes;
 
 public interface IItemDTO {
+//id
+    int getID();
+    void setID(int id);
 
-
+//name
     String getName();
-    String getWeight();
+    void setName(String name);
+
+
+    double getWeight();
+    void setWeight(double weight);
 
     String getDescription();
     void setDescription(String description);
