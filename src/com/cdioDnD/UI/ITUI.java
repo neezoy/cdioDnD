@@ -17,39 +17,39 @@ public interface ITUI {
     int deleteMenu();
 
     //create
-    void createUser(IUserDTO user); //don't know if this one is correct
-    void createCharacter(ICharacterDTO character);
-    void createItem(IItemDTO item);
-    void createGroup(IGroupDTO group);
+    UserDTO createUser(); //1 for the switch case
+    CharacterDTO createCharacter(); //2
+    ItemDTO createItem(); //3
+    GroupDTO createGroup(); //4
 
     //add
-    void addCharacter(ICharacterDTO character);
-    void addItem(IItemDTO item);
-    void addGroup(IGroupDTO group);
+    CharacterDTO addCharacter(); //5
+    ItemDTO addItem();//6
+    GroupDTO addGroup(); //7
 
     //remove
-    void removeCharacter(ICharacterDTO character);
-    void removeItem(IItemDTO item);
-    void removeGroup(IGroupDTO group);
+    CharacterDTO removeCharacter(); //8
+    ItemDTO removeItem(); //9
+    GroupDTO removeGroup(); //10
 
     //view
-    ArrayList<ICharacterDTO> getAllCharacters();
-    ArrayList<IGroupDTO> getAllGroups();
-    ArrayList<IItemDTO> getAllItems();
-    void viewOneCharacter(ICharacterDTO character);
-    void viewOneItem(IItemDTO item);
-    void viewOneGroup(IGroupDTO group);
+    ArrayList<ICharacterDTO> getAllCharacters(); //11
+    ArrayList<IGroupDTO> getAllGroups(); //12
+    ArrayList<IItemDTO> getAllItems(); //13
+    CharacterDTO viewOneCharacter(); //14
+    ItemDTO viewOneItem(); //15
+    GroupDTO viewOneGroup(); //16
 
     //edit
-    void editUser(IUserDTO user); //don't know if this one is correct
-    void editCharacter(ICharacterDTO character);
-    void editItem(IItemDTO item);
-    void editGroup(IGroupDTO group);
+    UserDTO editUser(); //17
+    CharacterDTO editCharacter(); //18
+    ItemDTO editItem(); //19
+    GroupDTO editGroup(); //20
 
     //delete
-    void deleteUser(IUserDTO user); //or this :)
-    void deleteeItem(IItemDTO item);
-    void deleteGroup(IGroupDTO group);
+    UserDTO deleteUser(); //21
+    ItemDTO deleteeItem(); //22
+    GroupDTO deleteGroup(); //23
 
 
 }
