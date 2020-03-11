@@ -545,7 +545,7 @@ public class DAO implements IDAO {
     @Override
     public boolean overwriteGroup(GroupDTO group, Connection c) throws SQLException{
         try {
-            String query = "UPDATE Group SET GrouName = ?, Description = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '"+character.getID()+"'";
+            String query = "UPDATE Group SET GroupName = ?, Description = ? WHERE GroupID = '"+group.getID()+"'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, group.getName());
             statement.setString(2, group.getDescription());
