@@ -10,6 +10,8 @@ public class UserDTO implements IUserDTO{
     private int role;
     private ArrayList<ICharacterDTO> characters = new ArrayList<ICharacterDTO>();
 
+    public UserDTO(){
+    }
     public UserDTO(String username, String password){
         setName(username);
         setPassword(password);

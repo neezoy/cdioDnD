@@ -1,0 +1,79 @@
+package com.cdioDnD.database;
+
+import com.cdioDnD.dataTypes.CharacterDTO;
+import com.cdioDnD.dataTypes.GroupDTO;
+import com.cdioDnD.dataTypes.ItemDTO;
+import com.cdioDnD.dataTypes.UserDTO;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+
+public interface IDAO {
+    //First we define functions to create and get rows in our database 'Data' tables.
+    void closeConnection() throws Exception;
+
+    void createUser(UserDTO user) throws SQLException; //should this just be userDTO
+
+    UserDTO getUserFromName(String username) throws SQLException;
+
+    UserDTO getUser(int userid) throws SQLException;
+
+    void createCharacter(CharacterDTO character) throws SQLException;
+
+    int getCharacterID(String charactername) throws SQLException;
+
+    CharacterDTO getCharacter(int characterid) throws SQLException;
+
+    void createItem(ItemDTO item) throws SQLException;
+
+    int getItemID(String itemname) throws SQLException;
+
+    ItemDTO getItem(int itemid) throws SQLException;
+
+    void createGroup(GroupDTO group) throws SQLException;
+
+    int getGroupID(String groupname) throws SQLException;
+
+    GroupDTO getGroup(int groupid) throws SQLException;
+
+    //Now we define functions to create and delete rows in the relational tables.
+    void addCharacter(UserDTO user, CharacterDTO character) throws SQLException;
+
+    void removeCharacter(int characterid) throws SQLException; //Only needs characterid because a character can only be owned by one person.
+
+    ArrayList getCharacterIDs(int userid) throws SQLException;
+
+    void addItem(int characterid, int itemid) throws SQLException;
+
+    void addItems(int characterid, int itemid, int amount) throws SQLException;
+
+    void removeItem(int characterid, int itemid) throws SQLException;
+
+    void removeItems(int characterid, int itemid, int amount) throws SQLException;
+
+    ArrayList getItemIDs(int characterid) throws SQLException;
+
+    void addToGroup(CharacterDTO character, GroupDTO group) throws SQLException;
+
+    void removeFromGroup(int characterid, int groupid) throws SQLException;
+
+    ArrayList getGroupIDs(int characterid) throws SQLException;
+
+    ArrayList getMembers(int groupid) throws SQLException;
+
+    //Lastly we define functions which deletes or overwrites data from the database.
+    void deleteUser(int userid) throws SQLException;
+
+    void overwriteUser(UserDTO user) throws SQLException;
+
+    void overwriteCharacter(CharacterDTO character) throws SQLException;
+
+    void overwriteItem(ItemDTO item) throws SQLException;
+
+    void deleteItem(int itemid) throws SQLException;
+
+    void overwriteGroup(GroupDTO group) throws SQLException;
+
+    void deleteGroup(int groupid) throws SQLException;
+}
