@@ -12,6 +12,10 @@ public interface ICharacterDTO {
     void setName(String name);
     String getName();
 
+    //Location
+    void setLocation(String Location);
+    String getLocation();
+
     //Strength
     void setStrength(int strength);
     int getStrength();
