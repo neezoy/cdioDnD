@@ -1,4 +1,5 @@
 package com.cdioDnD.UI;
+import com.cdioDnD.dataTypes.IUserDTO;
 import com.cdioDnD.database.IDAO;
 
 import java.util.Scanner;
@@ -85,6 +86,11 @@ public class TUI implements ITUI {
                 break;
 
         } return menuItem;
+
+
+    }
+
+    public IUserDTO createUser(){
 
     }
 
