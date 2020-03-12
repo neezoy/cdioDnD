@@ -74,7 +74,6 @@ public class DAO implements IDAO {
         }
         return user;
     }
-
     @Override
     public void createCharacter(CharacterDTO character, Connection c) throws SQLException{
         try {
