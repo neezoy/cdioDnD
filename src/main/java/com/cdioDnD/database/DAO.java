@@ -88,7 +88,7 @@ public class DAO implements IDAO {
             statement.setString(1, character.getName());
             statement.setString(2, character.getLocation());
             statement.setInt(3, character.getStrength());
-            statement.setInt(4, character.getBonus);
+            statement.setInt(4, character.getBonus());
 
             statement.execute();
             c.commit();
