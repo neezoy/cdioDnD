@@ -135,7 +135,7 @@ public class DAO implements IDAO {
             if (!result.next()) {
                 return null;
             }
-            character.setId(characterid);
+            character.setID(characterid);
             character.setName(result.getString("CName"));
             character.setLocation(result.getString("Location"));
             character.setStrength(result.getInt("Strength"));
@@ -205,7 +205,7 @@ public class DAO implements IDAO {
             if (!result.next()) {
                 return null;
             }
-            item.setId(itemid);
+            item.setID(itemid);
             item.setName(result.getString("ItemName"));
             item.setWeight(result.getDouble("Weight"));
             item.setDescription(result.getString("Description"));
