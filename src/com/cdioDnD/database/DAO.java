@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DAO implements IDAO {
 
     @Override
-    public boolean createUser(UserDTO user, Connection c) throws SQLException{
+    public void createUser(UserDTO user, Connection c) throws SQLException{
         try {
             String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
@@ -23,7 +23,6 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-        return true;
     }
 
     @Override
@@ -77,7 +76,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean createCharacter(CharacterDTO character, Connection c) throws SQLException{
+    public void createCharacter(CharacterDTO character, Connection c) throws SQLException{
         try {
 
             String query = "INSERT INTO user (Cname, Location, Strength, BonusCapacity) VALUES (?, ?, ?,?)";
@@ -96,7 +95,6 @@ public class DAO implements IDAO {
             throw p;
 
         }
-        return true;
     }
 
     @Override
@@ -151,7 +149,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean createItem(ItemDTO item, Connection c) throws SQLException{
+    public void createItem(ItemDTO item, Connection c) throws SQLException{
         try {
 
             String query = "INSERT INTO Item (ItemName, Weight, Description) VALUES (?, ?, ?)";
@@ -168,7 +166,6 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-        return true;
     }
 
     @Override
@@ -221,7 +218,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean createGroup(GroupDTO group, Connection c) throws SQLException{
+    public void createGroup(GroupDTO group, Connection c) throws SQLException{
         try {
             String query = "INSERT INTO Group (GroupName, Description) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
@@ -235,8 +232,6 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-        return true;
-
     }
 
     @Override
@@ -290,7 +285,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean addCharacter(UserDTO user, int characterid, Connection c) throws SQLException{
+    public void addCharacter(UserDTO user, int characterid, Connection c) throws SQLException{
         try {
 
             String query = "INSERT INTO CharacterRelation (CharacterID, UserID) VALUES (?, ?)";
@@ -307,11 +302,10 @@ public class DAO implements IDAO {
         }
 
         user.addCharacter(characterid);
-        return true;
     }
 
     @Override
-    public boolean removeCharacter(int characterid, Connection c) throws SQLException{
+    public void removeCharacter(int characterid, Connection c) throws SQLException{
         //TODO: I'm not sure about whether we should remove the character from the UserDTO. We probably should, to keep the data consistent.
         try {
 
@@ -324,8 +318,6 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             return false;
         }
-
-        return true;
     }
 
     @Override
@@ -348,7 +340,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean addItem(int characterid, int itemid, Connection c) throws SQLException{
+    public void addItem(int characterid, int itemid, Connection c) throws SQLException{
         //TODO make add and remove items check if the item already exists.
         try {
 
@@ -365,11 +357,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-        return true;
     }
 
     @Override
-    public boolean addItems(int characterid, int itemid, int amount, Connection c) throws SQLException{
+    public void addItems(int characterid, int itemid, int amount, Connection c) throws SQLException{
         try {
 
             String query = "INSERT INTO ItemRelation (ItemID, CharacterID, Amount) VALUES (?, ?, ?)";
@@ -385,11 +376,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-        return true;
     }
 
     @Override
-    public boolean removeItem(int characterid, int itemid, Connection c) throws SQLException{
+    public void removeItem(int characterid, int itemid, Connection c) throws SQLException{
         //TODO how do we delete one.
         try {
 
@@ -400,14 +390,12 @@ public class DAO implements IDAO {
             c.commit();
 
         } catch (SQLException p) {
-            return false;
+            throw p;
         }
-
-        return true;
     }
 
     @Override
-    public boolean removeItems(int characterid, int itemid, int amount, Connection c) throws SQLException{
+    public void removeItems(int characterid, int itemid, int amount, Connection c) throws SQLException{
         try {
 
             String query = "DELETE FROM ItemRelation WHERE ItemID ='"+itemid+"' AND CharacterID ='"+characterid+"' ";
@@ -419,8 +407,6 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             return false;
         }
-
-        return true;
     }
 
     @Override
@@ -443,7 +429,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean addToGroup(CharacterDTO character, GroupDTO group, Connection c) throws SQLException{
+    public void addToGroup(CharacterDTO character, GroupDTO group, Connection c) throws SQLException{
         try {
 
             String query = "INSERT INTO GroupRelation (GroupID, CharacterID) VALUES (?, ?)";
@@ -461,11 +447,10 @@ public class DAO implements IDAO {
 
         group.addCharacter(character.getID());
         character.addGroup(group.getID());
-        return true;
     }
 
     @Override
-    public boolean removeFromGroup(int characterid, int groupid, Connection c) throws SQLException{
+    public void removeFromGroup(int characterid, int groupid, Connection c) throws SQLException{
         //TODO: I'm not sure about whether we should remove the relation from the DTO. We probably should, to keep the data consistent.
         try {
 
@@ -478,8 +463,6 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 
     @Override
@@ -521,7 +504,7 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public boolean deleteUser(int userid, Connection c) throws SQLException{
+    public void deleteUser(int userid, Connection c) throws SQLException{
         try {
 
             String query = "DELETE FROM User WHERE UserID ='"+userid+"'";
@@ -533,12 +516,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 
     @Override
-    public boolean overwriteUser(UserDTO user, Connection c) throws SQLException{
+    public void overwriteUser(UserDTO user, Connection c) throws SQLException{
         try {
 
             String query = "UPDATE User SET Username = ?, Password = ?, Roles = ? WHERE UserID = '"+user.getID()+"'";
@@ -552,12 +533,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 
     @Override
-    public boolean overwriteCharacter(CharacterDTO character, Connection c) throws SQLException{
+    public void overwriteCharacter(CharacterDTO character, Connection c) throws SQLException{
         try {
 
             String query = "UPDATE Character SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '"+character.getID()+"'";
@@ -572,12 +551,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 
     @Override
-    public boolean overwriteItem(ItemDTO item, Connection c) throws SQLException{
+    public void overwriteItem(ItemDTO item, Connection c) throws SQLException{
         try {
 
             String query = "UPDATE Item SET ItemName = ?, Weight = ?, Description = ? WHERE ItemID = '"+item.getID()+"'";
@@ -592,12 +569,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 
     @Override
-    public boolean deleteItem(int itemid, Connection c) throws SQLException{
+    public void deleteItem(int itemid, Connection c) throws SQLException{
         try {
             String query = "DELETE FROM Item WHERE ItemID ='"+itemid+"'";
             PreparedStatement statement = c.prepareStatement(query);
@@ -608,12 +583,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 
     @Override
-    public boolean overwriteGroup(GroupDTO group, Connection c) throws SQLException{
+    public void overwriteGroup(GroupDTO group, Connection c) throws SQLException{
         try {
             String query = "UPDATE Group SET GroupName = ?, Description = ? WHERE GroupID = '"+group.getID()+"'";
             PreparedStatement statement = c.prepareStatement(query);
@@ -626,12 +599,10 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 
     @Override
-    public boolean deleteGroup(int groupid, Connection c) throws SQLException{
+    public void deleteGroup(int groupid, Connection c) throws SQLException{
         try {
             String query = "DELETE FROM Group WHERE GroupID ='"+groupid+"'";
             PreparedStatement statement = c.prepareStatement(query);
@@ -642,7 +613,5 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
-
-        return true;
     }
 }
