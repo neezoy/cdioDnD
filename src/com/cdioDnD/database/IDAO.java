@@ -34,7 +34,7 @@ public interface IDAO {
     boolean addItems(int characterid, int itemid, int amount, Connection c) throws SQLException;
     boolean removeItem(int characterid, int itemid, Connection c) throws SQLException;
     boolean removeItems(int characterid, int itemid, int amount, Connection c) throws SQLException;
-    int[] getItemIDs(int characterid, Connection c) throws SQLException;
+    ArrayList getItemIDs(int characterid, Connection c) throws SQLException;
 
     boolean addToGroup(CharacterDTO character, GroupDTO group, Connection c) throws SQLException;
     boolean removeFromGroup(int characterid, int groupid, Connection c) throws SQLException;

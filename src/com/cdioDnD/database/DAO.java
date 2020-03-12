@@ -349,27 +349,97 @@ public class DAO implements IDAO {
 
     @Override
     public boolean addItem(int characterid, int itemid, Connection c) throws SQLException{
+        //TODO make add and remove items check if the item already exists.
+        try {
 
+            String query = "INSERT INTO ItemRelation (ItemID, CharacterID, Amount) VALUES (?, ?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setInt(1, itemid);
+            statement.setInt(2, characterid);
+            statement.setInt(3, 1);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return true;
     }
 
     @Override
     public boolean addItems(int characterid, int itemid, int amount, Connection c) throws SQLException{
+        try {
 
+            String query = "INSERT INTO ItemRelation (ItemID, CharacterID, Amount) VALUES (?, ?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setInt(1, itemid);
+            statement.setInt(2, characterid);
+            statement.setInt(3, amount);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return true;
     }
 
     @Override
     public boolean removeItem(int characterid, int itemid, Connection c) throws SQLException{
+        //TODO how do we delete one.
+        try {
 
+            String query = "DELETE FROM ItemRelation WHERE ItemID ='"+itemid+"' AND CharacterID ='"+characterid+"' ";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public boolean removeItems(int characterid, int itemid, int amount, Connection c) throws SQLException{
+        try {
 
+            String query = "DELETE FROM ItemRelation WHERE ItemID ='"+itemid+"' AND CharacterID ='"+characterid+"' ";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+            c.commit();
+
+        } catch (SQLException p) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
-    public int[] getItemIDs(int characterid, Connection c) throws SQLException{
-        return new int[0];
+    public ArrayList getItemIDs(int characterid, Connection c) throws SQLException{
+        ArrayList itemids = new ArrayList();
+        try {
+            String query = "SELECT ItemID FROM ItemRelation WHERE CharacterID ='"+characterid+"'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+            c.commit();
+            while(result.next()){
+                itemids.add(result.getInt("CharacterID"));
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return itemids;
     }
 
     @Override
