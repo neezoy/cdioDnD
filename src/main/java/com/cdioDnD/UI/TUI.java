@@ -1,5 +1,7 @@
 package com.cdioDnD.UI;
+import com.cdioDnD.dataTypes.ICharacterDTO;
 import com.cdioDnD.dataTypes.IUserDTO;
+import com.cdioDnD.dataTypes.UserDTO;
 import com.cdioDnD.database.IDAO;
 
 import java.util.Scanner;
@@ -53,7 +55,7 @@ public class TUI implements ITUI {
     }
 
 
-    }
+
 
     public int removeMenu() {
         while (true) {
@@ -74,9 +76,7 @@ public class TUI implements ITUI {
 
     }
 
-    public IUserDTO createUser(){
 
-    }
 
     public int viewMenu() {
         while (true) {
@@ -94,6 +94,28 @@ public class TUI implements ITUI {
         } return menuItem;
 
     }
+
+    public IUserDTO createUser() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter a username:");
+        String username = sc.nextLine();
+        System.out.println("Please enter a password: ");
+        String password = sc.nextLine();
+        return new UserDTO(username,password);
+    }
+
+    public ICharacterDTO createCharacter() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter character name: ");
+        String name = sc.nextLine();
+        System.out.println("Enter strength: ");
+        int strength = sc.nextInt();
+        System.out.println("Enter capacity: ");
+        int bonuscapacity = sc.nextInt();
+
+        return new CharacterDTO(name, strength, bonuscapacity);
+    }
+
 
 
 

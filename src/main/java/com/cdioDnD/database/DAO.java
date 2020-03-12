@@ -13,7 +13,7 @@ public class DAO implements IDAO {
 
     private Connection c;
 
-    public DAO() throws Exception {
+    public DAO() {
         String url = "jdbc:mysql://localhost:3306/cdio?characterEncoding=latin1";
         String username = "root";
         String password = "1234";
@@ -23,7 +23,6 @@ public class DAO implements IDAO {
             Connection c = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
-            throw e;
         }
     }
 
