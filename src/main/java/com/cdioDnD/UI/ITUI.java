@@ -39,7 +39,6 @@ public interface ITUI {
     int editMenu();
 
 
-
     int deleteMenu();
     deleteUser()
     deleteItem();
