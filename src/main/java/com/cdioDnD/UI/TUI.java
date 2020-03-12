@@ -81,7 +81,7 @@ public class TUI implements ITUI {
             System.out.println("You've Chosen 'View': ");
             System.out.println("1 View User");
             System.out.println("2 View Item");
-            System.out.println("3 View Groups");
+            System.out.println("3 View Group");
             System.out.println("4 View Character");
             System.out.println("Please input the number of your selection here: ");
             menuItem = scanner.nextInt();
@@ -186,12 +186,20 @@ public class TUI implements ITUI {
         return character;
     }
 
+    public void viewACharacterO(ICharacterDTO charac){
+        //print info
+    }
+
     public String viewAItem(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the item to view: ");
         String item = sc.nextLine();
 
         return item;
+    }
+
+    public void viewAItemO(IItemDTO item){
+        //print info
     }
 
     public String viewUser(){
@@ -202,12 +210,20 @@ public class TUI implements ITUI {
         return user;
     }
 
+    public void viewUserO(IUserDTO user){
+        //print info;
+    }
+
     public String viewAGroup(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the group to view: ");
         String group = sc.nextLine();
 
         return group;
+    }
+
+    public void viewAGroupO(IGroupDTO grp){
+        //print info
     }
 
 
