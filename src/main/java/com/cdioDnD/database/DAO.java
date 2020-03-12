@@ -1,6 +1,5 @@
 package com.cdioDnD.database;
 import com.cdioDnD.dataTypes.*;
-import com.sun.xml.internal.ws.resources.UtilMessages;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -288,13 +287,13 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public void addCharacter(UserDTO user, int characterid, Connection c) throws SQLException{
+    public void addCharacter(UserDTO user, CharacterDTO character, Connection c) throws SQLException{
         try {
 
             String query = "INSERT INTO CharacterRelation (CharacterID, UserID) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
-            statement.setInt(1, characterid);
+            statement.setInt(1, character.getID());
             statement.setInt(2, user.getID());
 
             statement.execute();
@@ -304,7 +303,7 @@ public class DAO implements IDAO {
             throw p;
         }
 
-        user.addCharacter(characterid);
+        user.addCharacter(character);
     }
 
     @Override
@@ -448,8 +447,8 @@ public class DAO implements IDAO {
             throw p;
         }
 
-        group.addCharacter(character.getID());
-        character.addGroup(group.getID());
+        group.addCharacter(character);
+        character.addGroup(group);
     }
 
     @Override
