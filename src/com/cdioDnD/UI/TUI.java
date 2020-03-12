@@ -5,14 +5,11 @@ import java.util.Scanner;
 
 
 public class TUI implements ITUI {
-    IDAO dao;
     Scanner scanner;
     int menuItem;
 
 
-    public TUI(IDAO dao) {
-        this.dao = dao;
-        scanner = new Scanner(System.in);
+    public TUI() {
     }
 
     @Override

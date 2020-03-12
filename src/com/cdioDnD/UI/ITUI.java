@@ -16,6 +16,8 @@ public interface ITUI {
     int editMenu();
     int deleteMenu();
 
+    /* Dette er ikke implementeret
+
     //create
     UserDTO createUser(); //1 for the switch case
     CharacterDTO createCharacter(); //2
@@ -50,6 +52,6 @@ public interface ITUI {
     UserDTO deleteUser(); //21
     ItemDTO deleteeItem(); //22
     GroupDTO deleteGroup(); //23
-
+*/
 
 }
