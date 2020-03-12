@@ -33,6 +33,7 @@ public interface ITUI {
     //viewAllGroups
     String viewACharacter();
     viewAItem();
+    viewUser();
     viewAGroup();
 
     //to be depricated
