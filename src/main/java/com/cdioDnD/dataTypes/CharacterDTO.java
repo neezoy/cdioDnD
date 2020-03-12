@@ -11,6 +11,8 @@ public class CharacterDTO implements ICharacterDTO {
     private ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
     private ArrayList<IGroupDTO> groups = new ArrayList<IGroupDTO>();
 
+    public CharacterDTO(){
+    }
     public CharacterDTO(String name, int strength, int bonuscapacity){
         setName(name);
         setStrength(strength);

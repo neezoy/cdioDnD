@@ -8,6 +8,8 @@ public class GroupDTO implements IGroupDTO {
     private String name;
     private String description;
     private ArrayList<ICharacterDTO> characters = new ArrayList<ICharacterDTO>();
+    public GroupDTO(){
+    }
     public GroupDTO(String name, String description){
         setName(name);
         setDescription(description);

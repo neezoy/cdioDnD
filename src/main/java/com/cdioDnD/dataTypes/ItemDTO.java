@@ -5,7 +5,8 @@ public class ItemDTO implements IItemDTO {
     private String name;
     private String description;
     private double weight;
-
+    public ItemDTO(){
+    }
     public ItemDTO(String name, String description, double weight){
         setName(name);
         setDescription(description);
