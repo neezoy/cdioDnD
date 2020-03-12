@@ -49,4 +49,5 @@ public interface IDAO {
     void deleteItem(int itemid, Connection c) throws SQLException;
     void overwriteGroup(GroupDTO group, Connection c) throws SQLException;
     void deleteGroup(int groupid, Connection c) throws SQLException;
+    void closeConnection() throws Exception;
 }
