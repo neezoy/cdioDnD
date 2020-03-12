@@ -38,7 +38,7 @@ public interface ITUI {
     //to be depricated
     int editMenu();
 
-    
+
 
     int deleteMenu();
     deleteUser()
