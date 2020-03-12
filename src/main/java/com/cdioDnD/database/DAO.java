@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DAO implements IDAO {
-    
+
 
 
 
@@ -42,10 +42,10 @@ public class DAO implements IDAO {
             if (!result.next()) {
                 return null;
             }
-            user.setId(result.getInt("UserID"));
+            user.setID(result.getInt("UserID"));
             user.setName(username);
             user.setPassword(result.getString("Password"));
-            user.setRoles(result.getInt("Roles"));
+            user.setRole(result.getInt("Roles"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,10 +67,10 @@ public class DAO implements IDAO {
             if (!result.next()) {
                 return null;
             }
-            user.setId(userid);
+            user.setID(userid);
             user.setName(result.getString("Username"));
             user.setPassword(result.getString("Password"));
-            user.setRoles(result.getInt("Roles"));
+            user.setRole(result.getInt("Roles"));
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
@@ -138,7 +138,7 @@ public class DAO implements IDAO {
             if (!result.next()) {
                 return null;
             }
-            character.setId(characterid);
+            character.setID(characterid);
             character.setName(result.getString("CName"));
             character.setLocation(result.getString("Location"));
             character.setStrength(result.getInt("Strength"));
@@ -208,7 +208,7 @@ public class DAO implements IDAO {
             if (!result.next()) {
                 return null;
             }
-            item.setId(itemid);
+            item.setID(itemid);
             item.setName(result.getString("ItemName"));
             item.setWeight(result.getDouble("Weight"));
             item.setDescription(result.getString("Description"));
@@ -275,7 +275,7 @@ public class DAO implements IDAO {
             if (!result.next()) {
                 return null;
             }
-            item.setId(groupid);
+            item.setID(groupid);
             item.setName(result.getString("GroupName"));
             item.setDescription(result.getString("Description"));
 
@@ -319,7 +319,7 @@ public class DAO implements IDAO {
             c.commit();
 
         } catch (SQLException p) {
-            return false;
+            throw p;
         }
     }
 
@@ -408,7 +408,7 @@ public class DAO implements IDAO {
             c.commit();
 
         } catch (SQLException p) {
-            return false;
+            throw p;
         }
     }
 
