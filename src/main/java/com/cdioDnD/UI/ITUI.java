@@ -15,36 +15,20 @@ public interface ITUI {
     IItemDTO createItem();
     IGroupDTO createGroup();
 
-    //add
-    int addMenu();
-    addCharacterToUser();
-    addItemToCharacter();
-    addGroupToCharacter();
-
     //remove
     int removeMenu();
-    //removeCharacterFromUser();
-    removeItemFromCharacter();
+    removeUser();
+    removeCharacter();
+    removeItem();
     removeGroupFromCharacter();
 
     int viewMenu();
-    //viewAllCharacters
-    //viewAllItems
-    //viewAllGroups
     String viewACharacter();
     viewAItem();
     viewUser();
     viewAGroup();
 
-    //to be depricated
-    int editMenu();
 
-
-
-    int deleteMenu();
-    deleteUser()
-    deleteItem();
-    deleteGroup();
 
 
 
