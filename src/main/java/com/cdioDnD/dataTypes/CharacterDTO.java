@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CharacterDTO implements ICharacterDTO {
     private int id;
     private String name;
+    private String location;
     private int strength;
     private int bonuscapacity;
     private ArrayList<IItemDTO> items = new ArrayList<IItemDTO>();
@@ -34,6 +35,16 @@ public class CharacterDTO implements ICharacterDTO {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setLocation(String Location) {
+        this.location=location;
+    }
+
+    @Override
+    public String getLocation() {
+        return location;
     }
 
     @Override
