@@ -1,9 +1,6 @@
 package com.cdioDnD.database;
 
-import com.cdioDnD.dataTypes.CharacterDTO;
-import com.cdioDnD.dataTypes.GroupDTO;
-import com.cdioDnD.dataTypes.ItemDTO;
-import com.cdioDnD.dataTypes.UserDTO;
+import com.cdioDnD.dataTypes.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +10,7 @@ public interface IDAO {
     //First we define functions to create and get rows in our database 'Data' tables.
     void closeConnection() throws Exception;
 
-    void createUser(UserDTO user) throws SQLException; //should this just be userDTO
+    void createUser(IUserDTO user) throws SQLException; //should this just be userDTO
 
     UserDTO getUserFromName(String username) throws SQLException;
 

@@ -22,28 +22,22 @@ public class StartState implements State {
 
     @Override
     public void option2(Context context) {
-        context.setState(new AddState());
-    }
-
-    @Override
-    public void option3(Context context) {
         context.setState(new RemoveState());
     }
 
     @Override
-    public void option4(Context context) {
+    public void option3(Context context) {
         context.setState(new ViewState());
     }
 
     @Override
-    public void option5(Context context) {
-        context.setState(new EditState());
-    }
+    public void option4(Context context) {}
 
     @Override
-    public void option6(Context context) {
-        context.setState(new DeleteState());
-    }
+    public void option5(Context context) {}
+
+    @Override
+    public void option6(Context context) {}
 
     @Override
     public void option7(Context context) {

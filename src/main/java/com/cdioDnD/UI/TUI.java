@@ -25,7 +25,6 @@ public class TUI implements ITUI {
                 System.out.println("2 Remove");
                 System.out.println("3 View");
                 System.out.println("4 Terminate Program");
-
                 System.out.println("Please input the number of your selection here: ");
                 menuItem = scanner.nextInt();
                 System.out.print("\n");

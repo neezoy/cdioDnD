@@ -1,9 +1,6 @@
 package com.cdioDnD.database;
 
-import com.cdioDnD.dataTypes.CharacterDTO;
-import com.cdioDnD.dataTypes.GroupDTO;
-import com.cdioDnD.dataTypes.ItemDTO;
-import com.cdioDnD.dataTypes.UserDTO;
+import com.cdioDnD.dataTypes.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,7 +33,7 @@ public class DAO implements IDAO {
 
     }
     @Override
-    public void createUser(UserDTO user) throws SQLException {
+    public void createUser(IUserDTO user) throws SQLException {
         try {
             String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);

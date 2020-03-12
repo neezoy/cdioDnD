@@ -1,5 +1,7 @@
 package com.cdioDnD.controller;
 
+import com.cdioDnD.dataTypes.IUserDTO;
+
 public class CreateState implements State {
     @Override
     public void onEnterState(Context context) {
@@ -8,7 +10,8 @@ public class CreateState implements State {
 
     @Override
     public void option1(Context context) {
-
+        IUserDTO user = context.tui.createUser();
+        context.dao.createUser(user);
 
     }
 
