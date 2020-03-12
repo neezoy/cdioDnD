@@ -26,7 +26,7 @@ public interface IDAO {
     GroupDTO getGroup(int groupid, Connection c) throws SQLException;
     
     //Now we define functions to create and delete rows in the relational tables.
-    void addCharacter(UserDTO user, int characterid, Connection c) throws SQLException;
+    void addCharacter(UserDTO user, CharacterDTO character, Connection c) throws SQLException;
     void removeCharacter(int characterid, Connection c) throws SQLException; //Only needs characterid because a character can only be owned by one person.
     ArrayList getCharacterIDs(int userid, Connection c) throws SQLException;
 
