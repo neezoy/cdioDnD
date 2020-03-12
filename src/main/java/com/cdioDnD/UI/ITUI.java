@@ -8,29 +8,38 @@ public interface ITUI {
 
     //menu
     int showMenu();
+
     //create
     int createMenu();
+
     IUserDTO createUser();
+
     ICharacterDTO createCharacter();
+
     IItemDTO createItem();
+
     IGroupDTO createGroup();
 
     //remove
     int removeMenu();
-    removeUser();
-    removeCharacter();
-    removeItem();
-    removeGroupFromCharacter();
+
+    String removeUser();
+
+    String removeCharacter();
+
+    String removeItem();
+
+    String removeGroupFromCharacter();
 
     int viewMenu();
+
     String viewACharacter();
-    viewAItem();
-    viewUser();
-    viewAGroup();
 
+    String viewAItem();
 
+    String viewUser();
 
-
+    String viewAGroup();
 
 
 }
