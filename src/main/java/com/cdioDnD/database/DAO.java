@@ -19,7 +19,7 @@ public class DAO implements IDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection c = DriverManager.getConnection(url, username, password);
+            c = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,14 +38,15 @@ public class DAO implements IDAO {
     public void createUser(IUserDTO user) throws SQLException {
         try {
             String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
+            System.out.println(query);
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, user.getName());
-            statement.setString(2, user.getPassword());
+            statement.setString(2,  user.getPassword());
             statement.setInt(3, user.getRole());
 
             statement.execute();
-            c.commit();
+           //
 
         } catch (SQLException p) {
             throw p;
@@ -60,7 +61,7 @@ public class DAO implements IDAO {
             statement.setString(1, username);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+           //
 
             if (!result.next()) {
                 return null;
@@ -84,7 +85,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+
 
             if (!result.next()) {
                 return null;
@@ -112,7 +113,7 @@ public class DAO implements IDAO {
             statement.setInt(4, character.getBonus());
 
             statement.execute();
-            c.commit();
+
 
 
         } catch (SQLException p) {
@@ -129,7 +130,7 @@ public class DAO implements IDAO {
             statement.setString(1, charactername);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+
 
             if (!result.next()) {
                 return 0;
@@ -152,7 +153,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+
 
             if (!result.next()) {
                 return null;
@@ -181,7 +182,7 @@ public class DAO implements IDAO {
             statement.setString(3, item.getDescription());
 
             statement.execute();
-            c.commit();
+
 
 
         } catch (SQLException p) {
@@ -197,7 +198,7 @@ public class DAO implements IDAO {
             statement.setString(1, itemname);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+
 
             if (!result.next()) {
                 return 0;
@@ -219,7 +220,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+
 
             if (!result.next()) {
                 return null;
@@ -245,7 +246,7 @@ public class DAO implements IDAO {
             statement.setString(2, group.getDescription());
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -260,7 +261,7 @@ public class DAO implements IDAO {
             statement.setString(1, groupname);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+
 
             if (!result.next()) {
                 return 0;
@@ -283,7 +284,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
-            c.commit();
+
 
             if (!result.next()) {
                 return null;
@@ -310,7 +311,7 @@ public class DAO implements IDAO {
             statement.setInt(2, user.getID());
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -327,7 +328,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -341,7 +342,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
-            c.commit();
+
             while (result.next()) {
                 characterids.add(result.getInt("CharacterID"));
             }
@@ -364,7 +365,7 @@ public class DAO implements IDAO {
             statement.setInt(3, 1);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -382,7 +383,7 @@ public class DAO implements IDAO {
             statement.setInt(3, amount);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -397,7 +398,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -411,7 +412,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -425,7 +426,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
-            c.commit();
+
             while (result.next()) {
                 itemids.add(result.getInt("CharacterID"));
             }
@@ -446,7 +447,7 @@ public class DAO implements IDAO {
             statement.setInt(2, character.getID());
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -464,7 +465,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -478,7 +479,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
-            c.commit();
+
             while (result.next()) {
                 groupids.add(result.getInt("GroupID"));
             }
@@ -496,7 +497,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();
-            c.commit();
+
             while (result.next()) {
                 characterids.add(result.getInt("CharacterID"));
             }
@@ -514,7 +515,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -530,7 +531,7 @@ public class DAO implements IDAO {
             statement.setString(2, user.getPassword());
             statement.setInt(3, user.getRole());
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -547,7 +548,7 @@ public class DAO implements IDAO {
             statement.setInt(3, character.getStrength());
             statement.setInt(4, character.getBonus());
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -564,7 +565,7 @@ public class DAO implements IDAO {
             statement.setString(3, item.getDescription());
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -577,7 +578,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -592,7 +593,7 @@ public class DAO implements IDAO {
             statement.setString(2, group.getDescription());
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;
@@ -605,7 +606,7 @@ public class DAO implements IDAO {
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
-            c.commit();
+
 
         } catch (SQLException p) {
             throw p;

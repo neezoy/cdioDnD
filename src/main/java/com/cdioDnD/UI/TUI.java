@@ -95,11 +95,11 @@ public class TUI implements ITUI {
     }
 
     public IUserDTO createUser() {
-
+        Scanner sc = new  Scanner(System.in);
         System.out.println("Please enter a username:");
-        String username = scanner.nextLine();
+        String username = sc.nextLine();
         System.out.println("Please enter a password: ");
-        String password = scanner.nextLine();
+        String password = sc.nextLine();
         IUserDTO user = new UserDTO(username, password);
 
         return user;
@@ -211,7 +211,7 @@ public class TUI implements ITUI {
     }
 
     public void viewUserO(IUserDTO user){
-        //print info;
+        System.out.println("test");
     }
 
     public String viewAGroup(){

@@ -18,6 +18,7 @@ public class CreateState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
 
     }
 
