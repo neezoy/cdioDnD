@@ -187,6 +187,11 @@ public class TUI implements ITUI {
 
     public void viewACharacterO(ICharacterDTO charac) {
         System.out.println("Character name: " + charac.getName());
+        System.out.println("ID: " + charac.getID());
+        System.out.println("Location: " + charac.getLocation());
+        System.out.println("Bonus: " + charac.getBonus());
+        System.out.println("Items count: " + charac.getItemsList().size());
+
     }
 
     public String viewAItem() {
@@ -210,7 +215,10 @@ public class TUI implements ITUI {
     }
 
     public void viewUserO(IUserDTO user) {
-        System.out.println("Name: " + user.getName());
+        System.out.println("User Name: " + user.getName());
+        System.out.println("Password: " + user.getPassword());
+        System.out.println("Characters: " + user.getCharacters().size());
+
     }
 
     public String viewAGroup() {
@@ -223,6 +231,9 @@ public class TUI implements ITUI {
 
     public void viewAGroupO(IGroupDTO grp) {
         System.out.println("Group name: " + grp.getName());
+        System.out.println("ID: " + grp.getID());
+        System.out.println("Description: " + grp.getDescription());
+        System.out.println("Members: " + grp.getCharacters().size());
     }
 
 
