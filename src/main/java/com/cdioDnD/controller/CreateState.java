@@ -30,6 +30,7 @@ public class CreateState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
     }
 
     @Override
@@ -40,7 +41,7 @@ public class CreateState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        context.setState(new StartState());
     }
 
     @Override
@@ -51,6 +52,7 @@ public class CreateState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
     }
 
     @Override

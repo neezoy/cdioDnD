@@ -188,6 +188,7 @@ public class TUI implements ITUI {
 
     public void viewACharacterO(ICharacterDTO charac){
         //print info
+        System.out.println(charac.getName());
     }
 
     public String viewAItem(){

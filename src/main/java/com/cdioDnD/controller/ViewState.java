@@ -22,6 +22,7 @@ public class ViewState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
 
     }
 
@@ -35,6 +36,7 @@ public class ViewState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
 
 
     }
@@ -49,6 +51,7 @@ public class ViewState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
     }
 
     @Override
@@ -66,7 +69,7 @@ public class ViewState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        context.setState(new StartState());
     }
 
     @Override
