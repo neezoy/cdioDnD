@@ -22,6 +22,7 @@ public class RemoveState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
     }
 
     @Override
@@ -34,6 +35,7 @@ public class RemoveState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        context.setState(new StartState());
 
     }
 
@@ -47,7 +49,7 @@ public class RemoveState implements State {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        context.setState(new StartState());
     }
 
     @Override
