@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 
 public class TUI implements ITUI {
-    Scanner scanner;
+    Scanner scanner = new Scanner(System.in);
+
     int menuItem;
 
 
@@ -18,7 +19,6 @@ public class TUI implements ITUI {
     public int showMenu() {
 
         while (true) {
-//                scanner = new Scanner(System.in);
             System.out.println("Welcome to DND Forum");
             System.out.println("1 Create");
             System.out.println("2 Remove");
