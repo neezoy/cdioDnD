@@ -32,7 +32,7 @@ public interface IDAO {
 
     int getGroupID(String groupname) throws SQLException;
 
-    GroupDTO getGroup(int groupid) throws SQLException;
+    IGroupDTO getGroup(int groupid) throws SQLException;
 
     //Now we define functions to create and delete rows in the relational tables.
     void addCharacter(IUserDTO user, ICharacterDTO character) throws SQLException;

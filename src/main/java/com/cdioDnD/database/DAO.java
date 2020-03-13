@@ -274,8 +274,8 @@ public class DAO implements IDAO {
 
     }
     @Override
-    public GroupDTO getGroup(int groupid) throws SQLException {
-        GroupDTO item = new GroupDTO();
+    public IGroupDTO getGroup(int groupid) throws SQLException {
+        IGroupDTO item = new GroupDTO();
         try {
             String query = "SELECT * FROM cdio.Group WHERE GroupID = " + groupid + ";";
             PreparedStatement statement = c.prepareStatement(query);
