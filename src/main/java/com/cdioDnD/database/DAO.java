@@ -1,5 +1,6 @@
 package com.cdioDnD.database;
 
+import com.cdioDnD.BootStrap;
 import com.cdioDnD.dataTypes.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +16,7 @@ public class DAO implements IDAO {
     public DAO() {
         String url = "jdbc:mysql://localhost:3306/cdio?characterEncoding=latin1";
         String username = "root";
-        String password = "1234";
+        String password = BootStrap.rootPassword;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
