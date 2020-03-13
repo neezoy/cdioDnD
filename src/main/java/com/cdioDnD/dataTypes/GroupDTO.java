@@ -16,7 +16,7 @@ public class GroupDTO implements IGroupDTO {
     }
     @Override
     public int getID() {
-        return id;
+        return this.id;
     }
 
     @Override
