@@ -275,26 +275,28 @@ public class DAO implements IDAO {
     }
     @Override
     public IGroupDTO getGroup(int groupid) throws SQLException {
-        IGroupDTO item = new GroupDTO();
+        IGroupDTO group = new GroupDTO();
         try {
-            String query = "SELECT * FROM cdio.Group WHERE GroupID = " + groupid + ";";
+            String query = "SELECT * FROM cdio.Group WHERE GroupID = " + groupid;
             PreparedStatement statement = c.prepareStatement(query);
+            System.out.println(query);
             ResultSet result = statement.executeQuery();
 
 
 
             if (!result.next()) {
+                System.out.println("never enter if");
                 return null;
             }
-            item.setID(groupid);
-            item.setName(result.getString("GroupName"));
-            item.setDescription(result.getString("Description"));
+            group.setID(groupid);
+            group.setName(result.getString("GroupName"));
+            group.setDescription(result.getString("Description"));
 
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
         }
-        return item;
+        return group;
 
     }
     @Override
