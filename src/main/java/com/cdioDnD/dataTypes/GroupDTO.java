@@ -26,7 +26,7 @@ public class GroupDTO implements IGroupDTO {
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
