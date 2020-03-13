@@ -105,7 +105,6 @@ public class TUI implements ITUI {
     }
 
     public ICharacterDTO createCharacter() {
-        ICharacterDTO character = new CharacterDTO();
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter character name: ");
         String name = sc.nextLine();
@@ -113,12 +112,13 @@ public class TUI implements ITUI {
         int strength = sc.nextInt();
         System.out.println("Enter capacity: ");
         int bonuscapacity = sc.nextInt();
+        ICharacterDTO character = new CharacterDTO(name, strength, bonuscapacity);
 
-        return new CharacterDTO(name, strength, bonuscapacity);
+        return character;
     }
 
     public IItemDTO createItem() {
-        IItemDTO item = new ItemDTO();
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter Item name: ");
         String name = sc.nextLine();
@@ -126,19 +126,20 @@ public class TUI implements ITUI {
         String description = sc.next();
         System.out.println("Enter weight: ");
         double weight = sc.nextDouble();
+        IItemDTO item = new ItemDTO(name, description, weight);
 
-        return new ItemDTO(name, description, weight);
+        return item;
     }
 
     public IGroupDTO createGroup() {
-        IGroupDTO group = new GroupDTO();
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter group name: ");
         String name = sc.nextLine();
         System.out.println("Enter description: ");
         String description = sc.next();
+        IGroupDTO group = new GroupDTO(name, description);
 
-        return new GroupDTO(name, description);
+        return group;
     }
 
 

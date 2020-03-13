@@ -104,7 +104,7 @@ public class DAO implements IDAO {
     public void createCharacter(ICharacterDTO character) throws SQLException {
         try {
 
-            String query = "INSERT INTO user (Cname, Location, Strength, BonusCapacity) VALUES (?, ?, ?,?)";
+            String query = "INSERT INTO cdio.character (CName, Location, Strength, BonusCapacity) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, character.getName());
@@ -112,6 +112,7 @@ public class DAO implements IDAO {
             statement.setInt(3, character.getStrength());
             statement.setInt(4, character.getBonus());
 
+            System.out.println(statement);
             statement.execute();
 
 
@@ -125,12 +126,10 @@ public class DAO implements IDAO {
     public int getCharacterID(String charactername) throws SQLException {
         int ID;
         try {
-            String query = "SELECT CharacterID FROM Character WHERE charactername = ?;";
+            String query = "SELECT CharacterID FROM cdio.Character WHERE cname = ?";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, charactername);
             ResultSet result = statement.executeQuery();
-
-
 
             if (!result.next()) {
                 return 0;
@@ -149,11 +148,9 @@ public class DAO implements IDAO {
     public ICharacterDTO getCharacter(int characterid) throws SQLException {
         ICharacterDTO character = new CharacterDTO();
         try {
-            String query = "SELECT * FROM Character WHERE CharacterID = " + characterid + ";";
+            String query = "SELECT * FROM cdio.Character WHERE CharacterID = " + characterid + ";";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
-
-
 
             if (!result.next()) {
                 return null;
@@ -239,7 +236,7 @@ public class DAO implements IDAO {
     @Override
     public void createGroup(IGroupDTO group) throws SQLException {
         try {
-            String query = "INSERT INTO Group (GroupName, Description) VALUES (?, ?)";
+            String query = "INSERT INTO cdio.Group (GroupName, Description) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, group.getName());
@@ -256,7 +253,7 @@ public class DAO implements IDAO {
     public int getGroupID(String groupname) throws SQLException {
         int ID;
         try {
-            String query = "SELECT GroupID FROM Group WHERE groupID = ?;";
+            String query = "SELECT GroupID FROM cdio.Group WHERE groupID = ?;";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, groupname);
             ResultSet result = statement.executeQuery();
@@ -280,7 +277,7 @@ public class DAO implements IDAO {
     public GroupDTO getGroup(int groupid) throws SQLException {
         GroupDTO item = new GroupDTO();
         try {
-            String query = "SELECT * FROM Group WHERE GroupID = " + groupid + ";";
+            String query = "SELECT * FROM cdio.Group WHERE GroupID = " + groupid + ";";
             PreparedStatement statement = c.prepareStatement(query);
             ResultSet result = statement.executeQuery();
 
