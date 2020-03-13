@@ -253,12 +253,10 @@ public class DAO implements IDAO {
     public int getGroupID(String groupname) throws SQLException {
         int ID;
         try {
-            String query = "SELECT GroupID FROM cdio.Group WHERE groupID = ?;";
+            String query = "SELECT GroupID FROM cdio.Group WHERE groupname = ?;";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, groupname);
             ResultSet result = statement.executeQuery();
-
-
 
             if (!result.next()) {
                 return 0;
