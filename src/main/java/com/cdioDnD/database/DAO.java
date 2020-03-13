@@ -38,7 +38,6 @@ public class DAO implements IDAO {
     public void createUser(IUserDTO user) throws SQLException {
         try {
             String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
-            System.out.println(query);
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, user.getName());
@@ -112,7 +111,6 @@ public class DAO implements IDAO {
             statement.setInt(3, character.getStrength());
             statement.setInt(4, character.getBonus());
 
-            System.out.println(statement);
             statement.execute();
 
 
@@ -277,13 +275,11 @@ public class DAO implements IDAO {
         try {
             String query = "SELECT * FROM cdio.Group WHERE GroupID = " + groupid;
             PreparedStatement statement = c.prepareStatement(query);
-            System.out.println(query);
             ResultSet result = statement.executeQuery();
 
 
 
             if (!result.next()) {
-                System.out.println("never enter if");
                 return null;
             }
             group.setID(groupid);
