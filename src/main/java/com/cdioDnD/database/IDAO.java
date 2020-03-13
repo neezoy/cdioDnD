@@ -12,23 +12,23 @@ public interface IDAO {
 
     void createUser(IUserDTO user) throws SQLException; //should this just be userDTO
 
-    UserDTO getUserFromName(String username) throws SQLException;
+    IUserDTO getUserFromName(String username) throws SQLException;
 
     UserDTO getUser(int userid) throws SQLException;
 
-    void createCharacter(CharacterDTO character) throws SQLException;
+    void createCharacter(ICharacterDTO character) throws SQLException;
 
     int getCharacterID(String charactername) throws SQLException;
 
-    CharacterDTO getCharacter(int characterid) throws SQLException;
+    ICharacterDTO getCharacter(int characterid) throws SQLException;
 
-    void createItem(ItemDTO item) throws SQLException;
+    void createItem(IItemDTO item) throws SQLException;
 
     int getItemID(String itemname) throws SQLException;
 
-    ItemDTO getItem(int itemid) throws SQLException;
+    IItemDTO getItem(int itemid) throws SQLException;
 
-    void createGroup(GroupDTO group) throws SQLException;
+    void createGroup(IGroupDTO group) throws SQLException;
 
     int getGroupID(String groupname) throws SQLException;
 
