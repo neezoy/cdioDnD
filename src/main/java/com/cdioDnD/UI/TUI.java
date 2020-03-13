@@ -167,7 +167,7 @@ public class TUI implements ITUI {
         return name;
     }
 
-    // need fixing tomorrow. 
+    // need fixing tomorrow.
     /*public String removeGroupFromCharacter(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the group you want to remove: ");
