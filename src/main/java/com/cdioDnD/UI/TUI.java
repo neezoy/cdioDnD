@@ -224,6 +224,9 @@ public class TUI implements ITUI {
 
     public void viewAItemO(IItemDTO item) {
         System.out.println("Item name: " + item.getName());
+        System.out.println("ID: " + item.getID());
+        System.out.println(("Description: " + item.getDescription()));
+        System.out.println(("Item: " + item.getWeight()));
     }
 
     public String viewUser() {
