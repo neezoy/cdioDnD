@@ -51,7 +51,7 @@ public class AddState implements State {
         String a[] = context.tui.addGroupToCharacter();
         String characName = a[0];
         String gName = a[1];
-        
+
         try {
             int cid = context.dao.getCharacterID(characName);
             ICharacterDTO characdto = context.dao.getCharacter(cid);
