@@ -253,9 +253,9 @@ public class TUI implements ITUI {
         System.out.println("Group name: " + grp.getName());
         System.out.println("ID: " + grp.getID());
         System.out.println("Description: " + grp.getDescription());
-        if (grp.getCharacters() != null) {
-            System.out.println("Members: " + grp.getCharacters().size());
-        }
+        if (grp.getCharacters() != null)
+        System.out.println("Members: " + grp.getCharacters().size());
+    }
 
     public String[] removeGroupFromCharacter(){
         Scanner sc = new Scanner(System.in);
