@@ -31,10 +31,10 @@ public class StartState implements State {
     }
 
     @Override
-    public void option4(Context context) {System.out.println("Bye!");}
+    public void option4(Context context) {context.setState(new AddState());}
 
     @Override
-    public void option5(Context context) {context.setState(new StartState());}
+    public void option5(Context context) {System.out.println("Bye!");}
 
     @Override
     public void option6(Context context) {context.setState(new StartState());}

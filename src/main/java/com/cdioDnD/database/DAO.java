@@ -301,7 +301,7 @@ public class DAO implements IDAO {
 
     }
     @Override
-    public void addCharacter(UserDTO user, CharacterDTO character) throws SQLException {
+    public void addCharacter(IUserDTO user, ICharacterDTO character) throws SQLException {
         try {
 
             String query = "INSERT INTO CharacterRelation (CharacterID, UserID) VALUES (?, ?)";
@@ -437,7 +437,7 @@ public class DAO implements IDAO {
         return itemids;
     }
     @Override
-    public void addToGroup(CharacterDTO character, GroupDTO group) throws SQLException {
+    public void addToGroup(ICharacterDTO character, IGroupDTO group) throws SQLException {
         try {
 
             String query = "INSERT INTO GroupRelation (GroupID, CharacterID) VALUES (?, ?)";

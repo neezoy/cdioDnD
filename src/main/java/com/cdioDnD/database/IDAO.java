@@ -35,7 +35,7 @@ public interface IDAO {
     GroupDTO getGroup(int groupid) throws SQLException;
 
     //Now we define functions to create and delete rows in the relational tables.
-    void addCharacter(UserDTO user, CharacterDTO character) throws SQLException;
+    void addCharacter(IUserDTO user, ICharacterDTO character) throws SQLException;
 
     void removeCharacter(int characterid) throws SQLException; //Only needs characterid because a character can only be owned by one person.
 
@@ -51,7 +51,7 @@ public interface IDAO {
 
     ArrayList getItemIDs(int characterid) throws SQLException;
 
-    void addToGroup(CharacterDTO character, GroupDTO group) throws SQLException;
+    void addToGroup(ICharacterDTO character, IGroupDTO group) throws SQLException;
 
     void removeFromGroup(int characterid, int groupid) throws SQLException;
 

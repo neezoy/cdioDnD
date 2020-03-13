@@ -1,24 +1,28 @@
 package com.cdioDnD.controller;
 
 import com.cdioDnD.dataTypes.ICharacterDTO;
+import com.cdioDnD.dataTypes.IGroupDTO;
 import com.cdioDnD.dataTypes.IUserDTO;
 
 import java.sql.SQLException;
 
-public class RemoveState implements State {
+public class AddState implements State {
     @Override
     public void onEnterState(Context context) {
-        context.chooseOption(context.tui.removeMenu());
+        context.chooseOption(context.tui.addMenu());
     }
 
     @Override
     public void option1(Context context) {
-        String uName = context.tui.removeUser();
+        String[] a = context.tui.addCharacterToUser();
+        String characName = a[0];
+        String uName = a[1];
 
         try {
+            int cid = context.dao.getCharacterID(characName);
+            ICharacterDTO charac = context.dao.getCharacter(cid);
             IUserDTO user = context.dao.getUserFromName(uName);
-            int i = user.getID();
-            context.dao.deleteUser(i);
+            context.dao.addCharacter(user, charac);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -27,25 +31,33 @@ public class RemoveState implements State {
 
     @Override
     public void option2(Context context) {
-        String charName = context.tui.removeCharacter();
+        String[] a = context.tui.addItemToCharacter();
+        String characName = a[0];
+        String itemName = a[1];
 
         try {
-            int id = context.dao.getCharacterID(charName);
-            context.dao.removeCharacter(id);
+            int characID = context.dao.getCharacterID(characName);
+            int itemID = context.dao.getItemID(itemName);
+            context.dao.addItem(characID, itemID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        context.setState(new StartState());
 
+        context.setState(new StartState());
     }
 
     @Override
     public void option3(Context context) {
-        String itemName = context.tui.removeItem();
-
+        String a[] = context.tui.addGroupToCharacter();
+        String characName = a[0];
+        String gName = a[1];
+        
         try {
-            int id = context.dao.getItemID(itemName);
-            context.dao.deleteItem(id);
+            int cid = context.dao.getCharacterID(characName);
+            ICharacterDTO characdto = context.dao.getCharacter(cid);
+            int gid = context.dao.getGroupID(gName);
+            IGroupDTO grpdto = context.dao.getGroup(gid);
+            context.dao.addToGroup(characdto, grpdto);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,16 +66,6 @@ public class RemoveState implements State {
 
     @Override
     public void option4(Context context) {
-        String[] a = context.tui.removeGroupFromCharacter();
-
-
-        try {
-            int cid =context.dao.getCharacterID(a[0]);
-            int gid = context.dao.getGroupID(a[1]);
-            context.dao.removeFromGroup(cid, gid);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         context.setState(new StartState());
     }
 

@@ -22,7 +22,8 @@ public class TUI implements ITUI {
             System.out.println("1 Create");
             System.out.println("2 Remove");
             System.out.println("3 View");
-            System.out.println("4 Terminate Program");
+            System.out.println("4 Add");
+            System.out.println("5 Terminate Program");
             System.out.println("Please input the number of your selection here: ");
             menuItem = scanner.nextInt();
             System.out.print("\n");
@@ -62,6 +63,24 @@ public class TUI implements ITUI {
             System.out.println("3 Remove Item");
             System.out.println("4 Remove Group From Character");
             System.out.println("5 Return To Previous Menu");
+            System.out.println("Please input the number of your selection here: ");
+            menuItem = scanner.nextInt();
+            System.out.print("\n");
+
+            break;
+
+        }
+        return menuItem;
+
+
+    }
+
+    public int addMenu() {
+        while (true) {
+            System.out.println("You've Chosen 'Add': ");
+            System.out.println("1 Add Character to User: ");
+            System.out.println("2 Add Item to Character: ");
+            System.out.println("3 Add Group to Character: ");
             System.out.println("Please input the number of your selection here: ");
             menuItem = scanner.nextInt();
             System.out.print("\n");
@@ -234,6 +253,34 @@ public class TUI implements ITUI {
         System.out.println("ID: " + grp.getID());
         System.out.println("Description: " + grp.getDescription());
         System.out.println("Members: " + grp.getCharacters().size());
+    }
+
+    public String[] removeGroupFromCharacter(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter character you want to remove: ");
+        String name = sc.nextLine();
+        System.out.println("Please enter the Group: ");
+        String gname = sc.nextLine();
+        String[] a = {name, gname};
+        return a;
+    }
+
+    public String[] addCharacterToUser(){
+
+        String[] a = {characName, uName};
+        return a;
+    }
+
+    public String[] addItemToCharacter(){
+
+        String[] a = {characName, itemName};
+        return a;
+    }
+
+    public String[] addGroupToCharacter(){
+
+        String[] a = {characName, grpName};
+        return a;
     }
 
 

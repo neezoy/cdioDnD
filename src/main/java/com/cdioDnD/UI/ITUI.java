@@ -20,7 +20,13 @@ public interface ITUI {
     String removeUser();
     String removeCharacter();
     String removeItem();
-    //removeGroupFromCharacter();
+    String[] removeGroupFromCharacter();
+
+    //add
+    int addMenu();
+    String[] addCharacterToUser();
+    String[] addItemToCharacter();
+    String[] addGroupToCharacter();
 
     int viewMenu();
 
