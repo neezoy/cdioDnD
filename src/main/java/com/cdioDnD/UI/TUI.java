@@ -95,14 +95,14 @@ public class TUI implements ITUI {
     }
 
     public IUserDTO createUser() {
-        IUserDTO user = new UserDTO();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter a username:");
-        String username = sc.nextLine();
-        System.out.println("Please enter a password: ");
-        String password = sc.nextLine();
 
-        return new UserDTO(username, password);
+        System.out.println("Please enter a username:");
+        String username = scanner.nextLine();
+        System.out.println("Please enter a password: ");
+        String password = scanner.nextLine();
+        IUserDTO user = new UserDTO(username, password);
+
+        return user;
     }
 
     public ICharacterDTO createCharacter() {
