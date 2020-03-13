@@ -56,11 +56,6 @@ public class ViewState implements State {
 
     @Override
     public void option4(Context context) {
-
-    }
-
-    @Override
-    public void option5(Context context) {
         String name = context.tui.viewACharacter();
         try {
             int id = context.dao.getCharacterID(name);
@@ -73,12 +68,17 @@ public class ViewState implements State {
     }
 
     @Override
-    public void option6(Context context) {
+    public void option5(Context context) {
+        context.setState(new StartState());
+    }
 
+    @Override
+    public void option6(Context context) {
+        context.setState(new StartState());
     }
 
     @Override
     public void option7(Context context) {
-
+        context.setState(new StartState());
     }
 }

@@ -54,21 +54,22 @@ public class RemoveState implements State {
 
     @Override
     public void option4(Context context) {
+        //
 
     }
 
     @Override
     public void option5(Context context) {
-
+        context.setState(new StartState());
     }
 
     @Override
     public void option6(Context context) {
-
+        context.setState(new StartState());
     }
 
     @Override
     public void option7(Context context) {
-
+        context.setState(new StartState());
     }
 }
