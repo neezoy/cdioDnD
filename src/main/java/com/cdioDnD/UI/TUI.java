@@ -1,7 +1,6 @@
 package com.cdioDnD.UI;
 
 import com.cdioDnD.dataTypes.*;
-import com.cdioDnD.database.IDAO;
 
 import java.util.Scanner;
 
@@ -95,7 +94,7 @@ public class TUI implements ITUI {
     }
 
     public IUserDTO createUser() {
-        Scanner sc = new  Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Please enter a username:");
         String username = sc.nextLine();
         System.out.println("Please enter a password: ");
@@ -159,7 +158,7 @@ public class TUI implements ITUI {
         return name;
     }
 
-    public String removeItem(){
+    public String removeItem() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the item you want to remove: ");
         String name = sc.nextLine();
@@ -178,7 +177,7 @@ public class TUI implements ITUI {
         return group;
     }
 */
-    public String viewACharacter(){
+    public String viewACharacter() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the character to view: ");
         String character = sc.nextLine();
@@ -186,11 +185,11 @@ public class TUI implements ITUI {
         return character;
     }
 
-    public void viewACharacterO(ICharacterDTO charac){
-        //print info
+    public void viewACharacterO(ICharacterDTO charac) {
+        System.out.println("Character name: " + charac.getName());
     }
 
-    public String viewAItem(){
+    public String viewAItem() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the item to view: ");
         String item = sc.nextLine();
@@ -198,11 +197,11 @@ public class TUI implements ITUI {
         return item;
     }
 
-    public void viewAItemO(IItemDTO item){
-        //print info
+    public void viewAItemO(IItemDTO item) {
+        System.out.println("Item name: " + item.getName());
     }
 
-    public String viewUser(){
+    public String viewUser() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the user to view: ");
         String user = sc.nextLine();
@@ -210,11 +209,11 @@ public class TUI implements ITUI {
         return user;
     }
 
-    public void viewUserO(IUserDTO user){
-        System.out.println("test");
+    public void viewUserO(IUserDTO user) {
+        System.out.println("Name: " + user.getName());
     }
 
-    public String viewAGroup(){
+    public String viewAGroup() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the group to view: ");
         String group = sc.nextLine();
@@ -222,15 +221,9 @@ public class TUI implements ITUI {
         return group;
     }
 
-    public void viewAGroupO(IGroupDTO grp){
-        //print info
+    public void viewAGroupO(IGroupDTO grp) {
+        System.out.println("Group name: " + grp.getName());
     }
-
-
-
-
-
-
 
 
 }
