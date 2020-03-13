@@ -267,18 +267,33 @@ public class TUI implements ITUI {
     }
 
     public String[] addCharacterToUser(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Name of character you want to add: ");
+        String characName = sc.nextLine();
+        System.out.println("Enter the user: ");
+        String uName = sc.nextLine();
 
         String[] a = {characName, uName};
         return a;
     }
 
     public String[] addItemToCharacter(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Name of character you want to add to: ");
+        String characName = sc.nextLine();
+        System.out.println("Enter the item: ");
+        String itemName = sc.nextLine();
 
         String[] a = {characName, itemName};
         return a;
     }
 
     public String[] addGroupToCharacter(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Name of character you want to add: ");
+        String characName = sc.nextLine();
+        System.out.println("Enter the group: ");
+        String grpName = sc.nextLine();
 
         String[] a = {characName, grpName};
         return a;
