@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `cdio`.`User` (
   `UserID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `Username` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
+  `Status` BOOLEAN DEFAULT FALSE,
   `Roles` TINYINT NULL DEFAULT 0,
   UNIQUE INDEX `UserID_UNIQUE` (`UserID` ASC) VISIBLE,
   PRIMARY KEY (`UserID`))
@@ -41,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `cdio`.`Character` (
   `Location` VARCHAR(45) NULL DEFAULT "Frontier City",
   `Strength` INT UNSIGNED NULL,
   `BonusCapacity` INT NULL,
+  `Status` BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (`CharacterID`),
   UNIQUE INDEX `CharacterID_UNIQUE` (`CharacterID` ASC) VISIBLE)
 ENGINE = InnoDB;

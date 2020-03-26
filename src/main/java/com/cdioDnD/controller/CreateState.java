@@ -26,7 +26,7 @@ public class CreateState implements State {
     public void option2(Context context) {
         ICharacterDTO charac = context.tui.createCharacter();
         try {
-            context.dao.createCharacter(charac);
+            context.dao.createCharacter(charac, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }

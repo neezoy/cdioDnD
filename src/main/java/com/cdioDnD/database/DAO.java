@@ -94,6 +94,10 @@ public class DAO implements IDAO {
             user.setName(result.getString("Username"));
             user.setPassword(result.getString("Password"));
             user.setRole(result.getInt("Roles"));
+            ArrayList<Integer> characters = getCharacterIDs(userid);
+            for (int characterid: characters){
+                user.addCharacter(getCharacter(characterid));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
@@ -101,7 +105,7 @@ public class DAO implements IDAO {
         return user;
     }
     @Override
-    public void createCharacter(ICharacterDTO character) throws SQLException {
+    public void createCharacter(ICharacterDTO character, IUserDTO user) throws SQLException {
         try {
 
             String query = "INSERT INTO cdio.character (CName, Location, Strength, BonusCapacity) VALUES (?, ?, ?, ?)";
@@ -113,8 +117,9 @@ public class DAO implements IDAO {
             statement.setInt(4, character.getBonus());
 
             statement.execute();
-
-
+            if(!user.equals(null)) {
+                addCharacter(user, character);
+            }
         } catch (SQLException p) {
             throw p;
 
@@ -165,6 +170,35 @@ public class DAO implements IDAO {
         }
         return character;
     }
+    public ICharacterDTO getCharacterWithRelations(int characterid) throws SQLException {
+        ICharacterDTO character = new CharacterDTO();
+        try {
+            String query = "SELECT * FROM cdio.Character WHERE CharacterID = " + characterid + ";";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            if (!result.next()) {
+                return null;
+            }
+            character.setID(characterid);
+            character.setName(result.getString("CName"));
+            character.setLocation(result.getString("Location"));
+            character.setStrength(result.getInt("Strength"));
+            character.setBonus(result.getInt("BonusCapacity"));
+            ArrayList<Integer> items = getItemIDs(characterid);
+            for (int itemid: items){
+                character.addItem(getItem(itemid));
+            }
+            ArrayList<Integer> groups = getGroupIDs(characterid);
+            for (int groupid: groups){
+                character.addGroup(getGroup(groupid));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return character;
+    }
     @Override
     public void createItem(IItemDTO item) throws SQLException {
         try {
@@ -177,8 +211,6 @@ public class DAO implements IDAO {
             statement.setString(3, item.getDescription());
 
             statement.execute();
-
-
 
         } catch (SQLException p) {
             throw p;
@@ -267,7 +299,6 @@ public class DAO implements IDAO {
             throw e;
         }
         return ID;
-
     }
     @Override
     public IGroupDTO getGroup(int groupid) throws SQLException {
@@ -286,6 +317,33 @@ public class DAO implements IDAO {
             group.setName(result.getString("GroupName"));
             group.setDescription(result.getString("Description"));
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return group;
+
+    }
+    @Override
+    public IGroupDTO getGroupWithRelations(int groupid) throws SQLException {
+        IGroupDTO group = new GroupDTO();
+        try {
+            String query = "SELECT * FROM cdio.Group WHERE GroupID = " + groupid;
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+
+
+            if (!result.next()) {
+                return null;
+            }
+            group.setID(groupid);
+            group.setName(result.getString("GroupName"));
+            group.setDescription(result.getString("Description"));
+            ArrayList<Integer> members = getMembers(groupid);
+            for (int characterid: members){
+                group.addCharacter(getCharacter(characterid));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
@@ -515,8 +573,8 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void overwriteUser(UserDTO user) throws SQLException {
-        try {
+    public void overwriteUser(IUserDTO user) throws SQLException {
+            try {
 
             String query = "UPDATE User SET Username = ?, Password = ?, Roles = ? WHERE UserID = '" + user.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
@@ -531,7 +589,7 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void overwriteCharacter(CharacterDTO character) throws SQLException {
+    public void overwriteCharacter(ICharacterDTO character) throws SQLException {
         try {
 
             String query = "UPDATE Character SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
@@ -548,7 +606,7 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void overwriteItem(ItemDTO item) throws SQLException {
+    public void overwriteItem(IItemDTO item) throws SQLException {
         try {
 
             String query = "UPDATE Item SET ItemName = ?, Weight = ?, Description = ? WHERE ItemID = '" + item.getID() + "'";
@@ -572,13 +630,12 @@ public class DAO implements IDAO {
 
             statement.execute();
 
-
         } catch (SQLException p) {
             throw p;
         }
     }
     @Override
-    public void overwriteGroup(GroupDTO group) throws SQLException {
+    public void overwriteGroup(IGroupDTO group) throws SQLException {
         try {
             String query = "UPDATE Group SET GroupName = ?, Description = ? WHERE GroupID = '" + group.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
@@ -597,6 +654,36 @@ public class DAO implements IDAO {
         try {
             String query = "DELETE FROM Group WHERE GroupID ='" + groupid + "'";
             PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+    }
+    @Override
+    public void confirmCharacter(ICharacterDTO character) throws SQLException{
+        try {
+
+            String query = "UPDATE Character SET Status = ? WHERE characterid = '" + character.getID() + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setBoolean(1, true);
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+    }
+    @Override
+    public void confirmUser(IUserDTO user) throws SQLException{
+        try {
+
+            String query = "UPDATE Character SET Status = ? WHERE characterid = '" + user.getID() + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setBoolean(1, true);
 
             statement.execute();
 

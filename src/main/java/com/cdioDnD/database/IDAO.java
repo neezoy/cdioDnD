@@ -16,12 +16,13 @@ public interface IDAO {
 
     UserDTO getUser(int userid) throws SQLException;
 
-    void createCharacter(ICharacterDTO character) throws SQLException;
+    void createCharacter(ICharacterDTO character, IUserDTO user) throws SQLException;
 
     int getCharacterID(String charactername) throws SQLException;
 
     ICharacterDTO getCharacter(int characterid) throws SQLException;
 
+    ICharacterDTO getCharacterWithRelations(int characterid) throws SQLException;
     void createItem(IItemDTO item) throws SQLException;
 
     int getItemID(String itemname) throws SQLException;
@@ -33,6 +34,7 @@ public interface IDAO {
     int getGroupID(String groupname) throws SQLException;
 
     IGroupDTO getGroup(int groupid) throws SQLException;
+    IGroupDTO getGroupWithRelations(int groupid) throws SQLException;
 
     //Now we define functions to create and delete rows in the relational tables.
     void addCharacter(IUserDTO user, ICharacterDTO character) throws SQLException;
@@ -62,15 +64,19 @@ public interface IDAO {
     //Lastly we define functions which deletes or overwrites data from the database.
     void deleteUser(int userid) throws SQLException;
 
-    void overwriteUser(UserDTO user) throws SQLException;
+    void overwriteUser(IUserDTO user) throws SQLException;
 
-    void overwriteCharacter(CharacterDTO character) throws SQLException;
+    void overwriteCharacter(ICharacterDTO character) throws SQLException;
 
-    void overwriteItem(ItemDTO item) throws SQLException;
+    void overwriteItem(IItemDTO item) throws SQLException;
 
     void deleteItem(int itemid) throws SQLException;
 
-    void overwriteGroup(GroupDTO group) throws SQLException;
+    void overwriteGroup(IGroupDTO group) throws SQLException;
 
     void deleteGroup(int groupid) throws SQLException;
+
+    void confirmCharacter(ICharacterDTO character) throws SQLException;
+
+    void confirmUser(IUserDTO user) throws SQLException;
 }
