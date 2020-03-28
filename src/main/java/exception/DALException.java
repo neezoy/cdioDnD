@@ -13,5 +13,5 @@ public class DALException extends Exception {
     {
         super(msg);
     }
-    
+
 }
