@@ -1,4 +1,4 @@
-package exception;
+package com.cdioDnD.exception;
 
 class PasswordException extends Exception {
     String message;

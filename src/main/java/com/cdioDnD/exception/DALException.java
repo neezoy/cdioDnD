@@ -1,4 +1,4 @@
-package exception;
+package com.cdioDnD.exception;
 
 
 public class DALException extends Exception {
