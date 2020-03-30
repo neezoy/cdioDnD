@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DAO implements IDAO {
-
+//Hej
 
     private Connection c;
 
