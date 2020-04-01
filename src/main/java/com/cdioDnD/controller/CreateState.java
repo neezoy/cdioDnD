@@ -1,6 +1,7 @@
 package com.cdioDnD.controller;
 
 import com.cdioDnD.dataTypes.*;
+import exception.PasswordException;
 
 import java.sql.SQLException;
 
@@ -11,7 +12,7 @@ public class CreateState implements State {
     }
 
     @Override
-    public void option1(Context context) {
+    public void option1(Context context) throws PasswordException {
         IUserDTO user = context.tui.createUser();
         try {
             context.dao.createUser(user);

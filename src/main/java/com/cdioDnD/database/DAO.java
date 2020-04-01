@@ -2,6 +2,9 @@ package com.cdioDnD.database;
 
 import com.cdioDnD.BootStrap;
 import com.cdioDnD.dataTypes.*;
+import exception.PasswordException;
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -36,22 +39,38 @@ public class DAO implements IDAO {
 
     }
     @Override
-    public void createUser(IUserDTO user) throws SQLException {
+    public void createUser(IUserDTO user) throws SQLException , PasswordException {
         try {
             String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, user.getName());
-            statement.setString(2,  user.getPassword());
+            statement.setString(2, user.getPassword());
             statement.setInt(3, user.getRole());
 
-            statement.execute();
-           //
 
-        } catch (SQLException p) {
-            throw p;
+
+            if (!(user.getPassword().matches(".*[a-z].*") // at least one lowercase letter.
+                    && user.getPassword().matches(".*[0-9]{1,}.*")  // 0-9.
+                    && user.getPassword().matches(".*[.,_+!?=]{1,}.*")  //at least one special character.
+                    && user.getPassword().matches(".*[A-Z]{1,}.*")  //at least one capital letter.
+                    && user.getPassword().matches("\\S+") //check space
+                    && user.getPassword().length() >= 6 //minimum 6 letters
+                    && user.getPassword().length() <= 50)) { //maximum 50 letters.
+
+                throw new PasswordException("Please try again.\n");
+
+            }
+
+            statement.execute();
         }
-    }
+       catch(SQLException | PasswordException e){
+                e.printStackTrace();
+                System.out.print(e);
+                throw e;
+            }
+        }
+
     @Override
     public IUserDTO getUserFromName(String username) throws SQLException {
         IUserDTO user = new UserDTO();
