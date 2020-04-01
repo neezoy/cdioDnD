@@ -2,7 +2,7 @@ package com.cdioDnD.database;
 
 import com.cdioDnD.BootStrap;
 import com.cdioDnD.dataTypes.*;
-import com.cdioDnD.exception.DALException;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,7 +38,7 @@ public class DAO implements IDAO {
 
     }
     @Override
-    public void createUser(IUserDTO user) throws DALException {
+    public void createUser(IUserDTO user) throws SQLException {
         try {
             String query = "INSERT INTO User (Username, Password, Roles) VALUES (?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
@@ -49,12 +49,11 @@ public class DAO implements IDAO {
 
             statement.execute();
             //
-            throw new DALException();
+
         }
-       catch(SQLException | DALException e)
+       catch(SQLException e)
             {
-                System.out.println("    DAO error: " + e.getMessage());
-                throw new DALException("User creation error");
+
             }
         }
 

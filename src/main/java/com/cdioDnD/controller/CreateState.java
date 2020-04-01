@@ -1,7 +1,6 @@
 package com.cdioDnD.controller;
 
 import com.cdioDnD.dataTypes.*;
-
 import java.sql.SQLException;
 
 public class CreateState implements State {
