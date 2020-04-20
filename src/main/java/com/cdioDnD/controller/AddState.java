@@ -8,12 +8,12 @@ import java.sql.SQLException;
 
 public class AddState implements State {
     @Override
-    public void onEnterState(Context context) {
+    public void onEnterState(Context context) throws Exception {
         context.chooseOption(context.tui.addMenu());
     }
 
     @Override
-    public void option1(Context context) {
+    public void option1(Context context) throws Exception {
         String[] a = context.tui.addCharacterToUser();
         String characName = a[0];
         String uName = a[1];
@@ -30,7 +30,7 @@ public class AddState implements State {
     }
 
     @Override
-    public void option2(Context context) {
+    public void option2(Context context) throws Exception {
         String[] a = context.tui.addItemToCharacter();
         String characName = a[0];
         String itemName = a[1];
@@ -47,7 +47,7 @@ public class AddState implements State {
     }
 
     @Override
-    public void option3(Context context) {
+    public void option3(Context context) throws Exception {
         String a[] = context.tui.addGroupToCharacter();
         String characName = a[0];
         String gName = a[1];
@@ -65,22 +65,22 @@ public class AddState implements State {
     }
 
     @Override
-    public void option4(Context context) {
+    public void option4(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option5(Context context) {
+    public void option5(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option6(Context context) {
+    public void option6(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option7(Context context) {
+    public void option7(Context context) throws Exception {
         context.setState(new StartState());
     }
 }

@@ -10,7 +10,7 @@ public class BootStrap {
 
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter root password for database: ");
         rootPassword = sc.nextLine();

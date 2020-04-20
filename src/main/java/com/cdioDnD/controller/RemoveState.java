@@ -7,12 +7,12 @@ import java.sql.SQLException;
 
 public class RemoveState implements State {
     @Override
-    public void onEnterState(Context context) {
+    public void onEnterState(Context context) throws Exception {
         context.chooseOption(context.tui.removeMenu());
     }
 
     @Override
-    public void option1(Context context) {
+    public void option1(Context context) throws Exception {
         String uName = context.tui.removeUser();
 
         try {
@@ -26,7 +26,7 @@ public class RemoveState implements State {
     }
 
     @Override
-    public void option2(Context context) {
+    public void option2(Context context) throws Exception {
         String charName = context.tui.removeCharacter();
 
         try {
@@ -40,7 +40,7 @@ public class RemoveState implements State {
     }
 
     @Override
-    public void option3(Context context) {
+    public void option3(Context context) throws Exception {
         String itemName = context.tui.removeItem();
 
         try {
@@ -53,7 +53,7 @@ public class RemoveState implements State {
     }
 
     @Override
-    public void option4(Context context) {
+    public void option4(Context context) throws Exception {
         String[] a = context.tui.removeGroupFromCharacter();
 
 
@@ -68,17 +68,17 @@ public class RemoveState implements State {
     }
 
     @Override
-    public void option5(Context context) {
+    public void option5(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option6(Context context) {
+    public void option6(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option7(Context context) {
+    public void option7(Context context) throws Exception {
         context.setState(new StartState());
     }
 }

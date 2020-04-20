@@ -9,38 +9,38 @@ public class StartState implements State {
 
 
     @Override
-    public void onEnterState(Context context) {
+    public void onEnterState(Context context) throws Exception {
         context.chooseOption(context.tui.showMenu());
 
 
     }
 
     @Override
-    public void option1(Context context) {
+    public void option1(Context context) throws Exception {
         context.setState(new CreateState());
     }
 
     @Override
-    public void option2(Context context) {
+    public void option2(Context context) throws Exception {
         context.setState(new RemoveState());
     }
 
     @Override
-    public void option3(Context context) {
+    public void option3(Context context) throws Exception {
         context.setState(new ViewState());
     }
 
     @Override
-    public void option4(Context context) {context.setState(new AddState());}
+    public void option4(Context context) throws Exception {context.setState(new AddState());}
 
     @Override
     public void option5(Context context) {System.out.println("Bye!");}
 
     @Override
-    public void option6(Context context) {context.setState(new StartState());}
+    public void option6(Context context) throws Exception {context.setState(new StartState());}
 
     @Override
-    public void option7(Context context) {context.setState(new StartState());
+    public void option7(Context context) throws Exception {context.setState(new StartState());
     }
 }
 

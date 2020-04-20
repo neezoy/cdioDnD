@@ -9,12 +9,12 @@ import java.sql.SQLException;
 
 public class ViewState implements State {
     @Override
-    public void onEnterState(Context context) {
+    public void onEnterState(Context context) throws Exception {
         context.chooseOption(context.tui.viewMenu());
     }
 
     @Override
-    public void option1(Context context) {
+    public void option1(Context context) throws Exception {
         String name = context.tui.viewUser();
         try {
             IUserDTO user = context.dao.getUserFromName(name);
@@ -27,7 +27,7 @@ public class ViewState implements State {
     }
 
     @Override
-    public void option2(Context context) {
+    public void option2(Context context) throws Exception {
         String name = context.tui.viewAItem();
         try {
             int id = context.dao.getItemID(name);
@@ -42,7 +42,7 @@ public class ViewState implements State {
     }
 
     @Override
-    public void option3(Context context) {
+    public void option3(Context context) throws Exception {
         String name = context.tui.viewAGroup();
         try {
             int id = context.dao.getGroupID(name);
@@ -55,7 +55,7 @@ public class ViewState implements State {
     }
 
     @Override
-    public void option4(Context context) {
+    public void option4(Context context) throws Exception {
         String name = context.tui.viewACharacter();
         try {
             int id = context.dao.getCharacterID(name);
@@ -68,17 +68,17 @@ public class ViewState implements State {
     }
 
     @Override
-    public void option5(Context context) {
+    public void option5(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option6(Context context) {
+    public void option6(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option7(Context context) {
+    public void option7(Context context) throws Exception {
         context.setState(new StartState());
     }
 }

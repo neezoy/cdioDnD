@@ -4,17 +4,18 @@ import com.cdioDnD.UI.ITUI;
 import com.cdioDnD.UI.TUI;
 import com.cdioDnD.database.DAO;
 import com.cdioDnD.database.IDAO;
+import exception.PasswordException;
 
 public class Context {
     private State currentState;
     ITUI tui = new TUI();
     IDAO dao = new DAO();
 
-    public Context(){
+    public Context() throws Exception {
         setState(new StartState());
     }
 
-    public void setState(State state){
+    public void setState(State state) throws Exception {
         this.currentState = state;
         currentState.onEnterState(this);
     }
@@ -26,7 +27,7 @@ public class Context {
 
 
 
-    public void chooseOption(int choice){
+    public void chooseOption(int choice) throws Exception {
         switch(choice){
             case 1:
                 currentState.option1(this);
