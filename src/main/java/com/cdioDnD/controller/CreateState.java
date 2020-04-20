@@ -5,12 +5,12 @@ import java.sql.SQLException;
 
 public class CreateState implements State {
     @Override
-    public void onEnterState(Context context) {
+    public void onEnterState(Context context) throws Exception {
         context.chooseOption(context.tui.createMenu());
     }
 
     @Override
-    public void option1(Context context) {
+    public void option1(Context context) throws Exception {
         IUserDTO user = context.tui.createUser();
         try {
             context.dao.createUser(user);
@@ -22,7 +22,7 @@ public class CreateState implements State {
     }
 
     @Override
-    public void option2(Context context) {
+    public void option2(Context context) throws Exception {
         ICharacterDTO charac = context.tui.createCharacter();
         try {
             context.dao.createCharacter(charac);
@@ -33,7 +33,7 @@ public class CreateState implements State {
     }
 
     @Override
-    public void option3(Context context) {
+    public void option3(Context context) throws Exception {
         IItemDTO item = context.tui.createItem();
         try {
             context.dao.createItem(item);
@@ -44,7 +44,7 @@ public class CreateState implements State {
     }
 
     @Override
-    public void option4(Context context) {
+    public void option4(Context context) throws Exception {
         IGroupDTO grp = context.tui.createGroup();
         try {
             context.dao.createGroup(grp);
@@ -55,18 +55,18 @@ public class CreateState implements State {
     }
 
     @Override
-    public void option5(Context context) {
+    public void option5(Context context) throws Exception {
         context.setState(new StartState());
     }
 
     @Override
-    public void option6(Context context) {
+    public void option6(Context context) throws Exception {
         context.setState(new StartState());
 
     }
 
     @Override
-    public void option7(Context context) {
+    public void option7(Context context) throws Exception {
         context.setState(new StartState());
     }
 }

@@ -4,7 +4,7 @@ import com.cdioDnD.UI.ITUI;
 import com.cdioDnD.UI.TUI;
 import com.cdioDnD.database.DAO;
 import com.cdioDnD.database.IDAO;
-import exception.PasswordException;
+
 
 public class Context {
     private State currentState;
