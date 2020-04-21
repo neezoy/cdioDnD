@@ -109,18 +109,18 @@ DROP TABLE IF EXISTS `cdio`.`ItemRelation` ;
 CREATE TABLE IF NOT EXISTS `cdio`.`ItemRelation` (
   `ItemID` INT UNSIGNED NOT NULL,
   `CharacterID` INT UNSIGNED NOT NULL,
-  `Amount` INT UNSIGNED NOT NULL DEFAULT 1,
+  `Amount` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`ItemID`, `CharacterID`),
   INDEX `CharacterID_idx` (`CharacterID` ASC) VISIBLE,
   CONSTRAINT `ItemID`
     FOREIGN KEY (`ItemID`)
     REFERENCES `cdio`.`Item` (`ItemID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `CharacterID3`
     FOREIGN KEY (`CharacterID`)
     REFERENCES `cdio`.`Character` (`CharacterID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
