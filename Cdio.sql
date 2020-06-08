@@ -77,8 +77,22 @@ CREATE TABLE IF NOT EXISTS `cdio`.`Group` (
   PRIMARY KEY (`GroupID`),
   UNIQUE INDEX `GroupID_UNIQUE` (`GroupID` ASC) VISIBLE)
 ENGINE = InnoDB;
-alter table cdio.group AUTO_INCREMENT=100;
+alter table cdio.group AUTO_INCREMENT=10000;
 
+-- -----------------------------------------------------
+-- Table `cdio`.`Session`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cdio`.`Session` ;
+
+CREATE TABLE IF NOT EXISTS `cdio`.`Session` (
+  `SessionID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Date` Datetime NOT NULL,
+  `Location` VARCHAR(45) NOT NULL,
+  `Amount` TINYINT NOT NULL,
+  UNIQUE INDEX `SessionID_UNIQUE` (`SessionID` ASC) VISIBLE,
+  PRIMARY KEY (`SessionID`))
+ENGINE = InnoDB;
+Alter table cdio.Session Auto_INCREMENT=10000;
 
 -- -----------------------------------------------------
 -- Table `cdio`.`CharacterRelation`
@@ -148,6 +162,26 @@ CREATE TABLE IF NOT EXISTS `cdio`.`GroupRelation` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+DROP TABLE IF EXISTS `cdio`.`SessionRelation` ;
+
+CREATE TABLE IF NOT EXISTS `cdio`.`SessionRelation` (
+  `SessionID` INT UNSIGNED NOT NULL,
+  `CharacterID` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`SessionID`, `CharacterID`),
+  INDEX `CharacterID_idx` (`CharacterID` ASC) VISIBLE,
+  CONSTRAINT `SessionID`
+    FOREIGN KEY (`SessionID`)
+    REFERENCES `cdio`.`Session` (`SessionID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `CharacterID3`
+    FOREIGN KEY (`CharacterID`)
+    REFERENCES `cdio`.`Character` (`CharacterID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 INSERT `Character` (CName, Location, Strength, BonusCapacity) VALUES ( 'Thanos', 'Narnia', 10, 5), ( 'CaptainAmerica', 'Stormwind', 70, 0), ( 'KaelThas', 'Azeroth', 1, 1);
 insert `user` (Username, `Password`, Roles) values ('Zaccie', 1234, 1), ('Wowser', 2843762, 3), ('Bowser', 2828, 2);
