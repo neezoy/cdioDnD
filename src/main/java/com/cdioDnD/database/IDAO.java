@@ -76,7 +76,7 @@ public interface IDAO {
 
     void deleteGroup(int groupid) throws SQLException;
 
-    void confirmCharacter(ICharacterDTO character) throws SQLException;
+    void approveCharacter(ICharacterDTO character, boolean approval) throws SQLException;
 
-    void confirmUser(IUserDTO user) throws SQLException;
+    void approveUser(IUserDTO user, boolean approval) throws SQLException;
 }

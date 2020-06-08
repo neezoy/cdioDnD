@@ -663,30 +663,38 @@ public class DAO implements IDAO {
         }
     }
     @Override
-    public void confirmCharacter(ICharacterDTO character) throws SQLException{
+    public void approveCharacter(ICharacterDTO character, boolean approval) throws SQLException{
         try {
 
             String query = "UPDATE Character SET Status = ? WHERE characterid = '" + character.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
-            statement.setBoolean(1, true);
-
+            if(approval) {
+                statement.setInt(1, 1);
+            }
+            else
+            {
+                statement.setInt(1, 2);
+            }
             statement.execute();
-
 
         } catch (SQLException p) {
             throw p;
         }
     }
     @Override
-    public void confirmUser(IUserDTO user) throws SQLException{
+    public void approveUser(IUserDTO user, boolean approval) throws SQLException{
         try {
 
             String query = "UPDATE Character SET Status = ? WHERE characterid = '" + user.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
-            statement.setBoolean(1, true);
-
+            if(approval) {
+                statement.setInt(1, 1);
+            }
+            else
+            {
+                statement.setInt(1, 2);
+            }
             statement.execute();
-
 
         } catch (SQLException p) {
             throw p;
