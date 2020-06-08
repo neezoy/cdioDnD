@@ -13,7 +13,7 @@ public interface ICharacterDTO {
     String getName();
 
     //Location
-    void setLocation(String Location);
+    void setLocation(String location);
     String getLocation();
 
     //Strength

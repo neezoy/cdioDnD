@@ -149,6 +149,41 @@ CREATE TABLE IF NOT EXISTS `cdio`.`GroupRelation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT `Character` (CName, Location, Strength, BonusCapacity) VALUES ( 'Thanos', 'Narnia', 10, 5), ( 'CaptainAmerica', 'Stormwind', 70, 0), ( 'KaelThas', 'Azeroth', 1, 1);
+insert `user` (Username, `Password`, Roles) values ('Zaccie', 1234, 1), ('Wowser', 2843762, 3), ('Bowser', 2828, 2);
+
+insert item (ItemName, Weight, `IDescription`) values ('Logg of gods', 5, 'Insane'), ('Sword of a thousand screams', 1, 'Girly screams'), ('Spear of the barbarian', 5, 'Spear that bastard');
+
+insert `group` (groupname, `Gdescription`) values ('Crusaders', 'Apply here'), ('Method EU', 'L33t'), ('The bois', 'No girls allowed');
+
+
+
+
+DROP USER if exists administrator@localhost;
+DROP USER if exists gamemaster@localhost;
+
+CREATE USER administrator@localhost IDENTIFIED BY 'password';
+CREATE USER gamemaster@localhost IDENTIFIED BY 'password';
+
+GRANT ALL privileges ON Cdio.* TO administrator@localhost;
+GRANT SELECT ON Cdio.* to gamemaster@localhost;
+GRANT UPDATE, INSERT ON Cdio.`character` TO gamemaster@localhost;
+GRANT UPDATE, INSERT ON Cdio.`item` TO gamemaster@localhost;
+GRANT UPDATE, INSERT ON Cdio.`group` TO gamemaster@localhost;
+GRANT UPDATE, INSERT ON Cdio.`character` TO gamemaster@localhost;
+GRANT UPDATE, INSERT ON Cdio.`characterrelation` TO gamemaster@localhost;
+GRANT UPDATE, INSERT ON Cdio.`itemrelation` TO gamemaster@localhost;
+GRANT UPDATE, INSERT ON Cdio.`grouprelation` TO gamemaster@localhost;
+
+GRANT INSERT (UserID, Username, `Password`, Roles ) ON Cdio.`user` TO gamemaster@localhost;
+
+
+
+
+
+
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

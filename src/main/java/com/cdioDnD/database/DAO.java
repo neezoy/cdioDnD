@@ -107,7 +107,6 @@ public class DAO implements IDAO {
     @Override
     public void createCharacter(ICharacterDTO character, IUserDTO user) throws SQLException {
         try {
-
             String query = "INSERT INTO cdio.character (CName, Location, Strength, BonusCapacity) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
@@ -117,7 +116,7 @@ public class DAO implements IDAO {
             statement.setInt(4, character.getBonus());
 
             statement.execute();
-            if(!user.equals(null)) {
+            if(!(user ==null)) {
                 addCharacter(user, character);
             }
         } catch (SQLException p) {
@@ -354,7 +353,6 @@ public class DAO implements IDAO {
     @Override
     public void addCharacter(IUserDTO user, ICharacterDTO character) throws SQLException {
         try {
-
             String query = "INSERT INTO CharacterRelation (CharacterID, UserID) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
@@ -363,10 +361,10 @@ public class DAO implements IDAO {
 
             statement.execute();
 
-
         } catch (SQLException p) {
             throw p;
         }
+
 
         user.addCharacter(character);
     }
@@ -592,7 +590,7 @@ public class DAO implements IDAO {
     public void overwriteCharacter(ICharacterDTO character) throws SQLException {
         try {
 
-            String query = "UPDATE Character SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
+            String query = "UPDATE `Character` SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, character.getName());
             statement.setString(2, character.getLocation());
@@ -666,7 +664,7 @@ public class DAO implements IDAO {
     public void approveCharacter(ICharacterDTO character, boolean approval) throws SQLException{
         try {
 
-            String query = "UPDATE Character SET Status = ? WHERE characterid = '" + character.getID() + "'";
+            String query = "UPDATE `Character` SET CStatus = ? WHERE characterid = '" + character.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             if(approval) {
                 statement.setInt(1, 1);
@@ -685,7 +683,7 @@ public class DAO implements IDAO {
     public void approveUser(IUserDTO user, boolean approval) throws SQLException{
         try {
 
-            String query = "UPDATE Character SET Status = ? WHERE characterid = '" + user.getID() + "'";
+            String query = "UPDATE `User` SET UStatus = ? WHERE userid = '" + user.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             if(approval) {
                 statement.setInt(1, 1);
