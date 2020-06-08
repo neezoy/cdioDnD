@@ -107,7 +107,7 @@ public class DAO implements IDAO {
     @Override
     public void createCharacter(ICharacterDTO character, IUserDTO user) throws SQLException {
         try {
-            String query = "INSERT INTO cdio.character (CName, Location, Strength, BonusCapacity) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO cdio.character (CName, CLocation, Strength, BonusCapacity) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.setString(1, character.getName());
@@ -159,7 +159,7 @@ public class DAO implements IDAO {
             }
             character.setID(characterid);
             character.setName(result.getString("CName"));
-            character.setLocation(result.getString("Location"));
+            character.setLocation(result.getString("CLocation"));
             character.setStrength(result.getInt("Strength"));
             character.setBonus(result.getInt("BonusCapacity"));
 
@@ -181,7 +181,7 @@ public class DAO implements IDAO {
             }
             character.setID(characterid);
             character.setName(result.getString("CName"));
-            character.setLocation(result.getString("Location"));
+            character.setLocation(result.getString("CLocation"));
             character.setStrength(result.getInt("Strength"));
             character.setBonus(result.getInt("BonusCapacity"));
             ArrayList<Integer> items = getItemIDs(characterid);
@@ -590,7 +590,7 @@ public class DAO implements IDAO {
     public void overwriteCharacter(ICharacterDTO character) throws SQLException {
         try {
 
-            String query = "UPDATE `Character` SET Cname = ?, Location = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
+            String query = "UPDATE `Character` SET Cname = ?, CLocation = ?, Strength = ?, BonusCapacity = ? WHERE CharacterID = '" + character.getID() + "'";
             PreparedStatement statement = c.prepareStatement(query);
             statement.setString(1, character.getName());
             statement.setString(2, character.getLocation());
@@ -697,5 +697,101 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
+    }
+
+    @Override
+    public void createSession(ISessionDTO session) throws SQLException {
+        try {
+            String query = "INSERT INTO cdio.Session (`date`, Slocation, amount) VALUES (?, ?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setString(1, session.getDate());
+            statement.setString(2, session.getLocation());
+            statement.setInt(3, session.getAmount());
+
+            statement.execute();
+            //
+
+        } catch (SQLException p) {
+            throw p;
+        }
+    }
+
+    @Override
+    public ISessionDTO getSession(int sessionid) throws SQLException {
+        ISessionDTO session = new SessionDTO();
+        try {
+            String query = "SELECT * FROM cdio.Session WHERE SessionID = " + sessionid + ";";
+            PreparedStatement statement = c.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            if (!result.next()) {
+                return null;
+            }
+            session.setID(sessionid);
+            session.setDate(result.getString("Date"));
+            session.setLocation(result.getString("SLocation"));
+            session.setAmount(result.getInt("Amount"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return session;
+    }
+
+    @Override
+    public void overwriteSession(ISessionDTO session) throws SQLException {
+        try {
+            String query = "UPDATE Cdio.Session SET `Date` = ?, SLocation = ?, Amount = ? WHERE SessionID = '" + session.getID() + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+            statement.setString(1, session.getDate());
+            statement.setString(2, session.getLocation());
+            statement.setInt(3, session.getAmount());
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+    }
+
+    @Override
+    public ArrayList getSessionIDs(int characterid) throws SQLException {
+        ArrayList sessionids = new ArrayList();
+        try {
+            String query = "SELECT SessionID FROM SessionRelation WHERE CharacterID ='" + characterid + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                sessionids.add(result.getInt("SessionID"));
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return sessionids;
+    }
+
+    @Override
+    public ArrayList getAttendees(int sessionid) throws SQLException {
+        ArrayList characterids = new ArrayList();
+        try {
+            String query = "SELECT CharacterID FROM SessionRelation WHERE SessionID ='" + sessionid + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                characterids.add(result.getInt("CharacterID"));
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return characterids;
     }
 }

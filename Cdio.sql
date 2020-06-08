@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS `cdio`.`Character` ;
 CREATE TABLE IF NOT EXISTS `cdio`.`Character` (
   `CharacterID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CName` VARCHAR(45) NOT NULL,
-  `Location` VARCHAR(45) NULL DEFAULT "Frontier City",
+  `CLocation` VARCHAR(45) NULL DEFAULT "Frontier City",
   `Strength` INT UNSIGNED NULL,
   `BonusCapacity` INT NULL,
   `CStatus` TINYINT UNSIGNED DEFAULT 0,
@@ -87,7 +87,7 @@ DROP TABLE IF EXISTS `cdio`.`Session` ;
 CREATE TABLE IF NOT EXISTS `cdio`.`Session` (
   `SessionID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `Date` Datetime NOT NULL,
-  `Location` VARCHAR(45) NOT NULL,
+  `SLocation` VARCHAR(45) NOT NULL,
   `Amount` TINYINT NOT NULL,
   UNIQUE INDEX `SessionID_UNIQUE` (`SessionID` ASC) VISIBLE,
   PRIMARY KEY (`SessionID`))

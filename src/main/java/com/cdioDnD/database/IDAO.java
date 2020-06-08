@@ -14,7 +14,7 @@ public interface IDAO {
 
     IUserDTO getUserFromName(String username) throws SQLException;
 
-    UserDTO getUser(int userid) throws SQLException;
+    IUserDTO getUser(int userid) throws SQLException;
 
     void createCharacter(ICharacterDTO character, IUserDTO user) throws SQLException;
 
@@ -79,4 +79,14 @@ public interface IDAO {
     void approveCharacter(ICharacterDTO character, boolean approval) throws SQLException;
 
     void approveUser(IUserDTO user, boolean approval) throws SQLException;
+
+    void createSession(ISessionDTO session) throws SQLException;
+
+    ISessionDTO getSession(int sessionid) throws SQLException;
+
+    void overwriteSession(ISessionDTO session) throws SQLException;
+
+    ArrayList getSessionIDs(int characterid) throws SQLException;
+
+    ArrayList getAttendees(int sessionid) throws SQLException;
 }
