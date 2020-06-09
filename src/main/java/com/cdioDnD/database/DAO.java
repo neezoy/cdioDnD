@@ -797,9 +797,15 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public void addToSession(ICharacterDTO character, ISessionDTO session) throws SQLException {
+    public void addToSession(ICharacterDTO character, ISessionDTO session) throws SQLException{
 
-        try {
+            if(session.getCharacters().size() == session.getAmount()) {
+                //TODO Make custom exception
+              throw new SQLException();
+            }
+
+            try {
+
 
             String query = "INSERT INTO SessionRelation (SessionID, CharacterID) VALUES (?, ?)";
             PreparedStatement statement = c.prepareStatement(query);
@@ -823,7 +829,7 @@ public class DAO implements IDAO {
     public void removeFromSession(ICharacterDTO character, ISessionDTO session) throws SQLException {
         try {
 
-            String query = "DELETE FROM GroupRelation WHERE CharacterID = '" + character.getID() + "' AND SessionID = '" + session.getID()+ "'";
+            String query = "DELETE FROM SessionRelation WHERE CharacterID = '" + character.getID() + "' AND SessionID = '" + session.getID()+ "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -859,7 +865,7 @@ public class DAO implements IDAO {
     public ArrayList getUserByStatus(int status) throws SQLException {
         ArrayList userids = new ArrayList();
         try {
-            String query = "SELECT CharacterID FROM `User` WHERE UStatus ='" + status + "'";
+            String query = "SELECT UserID FROM `User` WHERE UStatus ='" + status + "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             ResultSet result = statement.executeQuery();

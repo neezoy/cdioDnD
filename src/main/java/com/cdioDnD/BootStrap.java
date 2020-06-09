@@ -22,7 +22,8 @@ public class BootStrap {
         // CharacterDTO characterDTO = new CharacterDTO("Heyyeye", 5, 10);
         // characterDTO.setLocation("Narnia");
         // dao.addCharacter(dao.getUser(102), dao.getCharacter(1003));
-        // dao.approveUser(dao.getUser(103), true);
+        // dao.approveUser(dao.getUser(101), true);
+        // dao.approveCharacter(dao.getCharacter(1001), true);
         // IUserDTO user = dao.getUser(103);
         // user.setName("Woooooooooow");
 
@@ -30,11 +31,34 @@ public class BootStrap {
         //character.setLocation("wow");
 
 
+        // SessionDTO iSessionDTO = new SessionDTO("2020-03-20 08:30:00", "kdsjakjdsk", 8);
+        // iSessionDTO.setID(10000);
+        // dao.overwriteSession(iSessionDTO);
 
-        SessionDTO iSessionDTO = new SessionDTO("2020-03-20 08:30:00", "Narnia", 8);
+        // System.out.println(dao.getSession(10000).getAmount());
+
+
+        //dao.addToSession(dao.getCharacter(1002), iSessionDTO);
+
+
+        // System.out.println(dao.getAttendees(10000).toString());
+
+        //  System.out.println(dao.getSessionIDs(1002).toString());
+
+        // dao.removeFromSession(dao.getCharacter(1002),iSessionDTO);
+
+        // System.out.println(dao.getAttendees(10000).toString());
+
+        // System.out.println(dao.getSessionIDs(1002).toString());
+
 
         // dao.overwriteCharacter(character);
         // dao.approveCharacter(dao.getCharacter(1003), true);
+
+        System.out.println(dao.getCharacterByStatus(1));
+        System.out.println(dao.getCharacterByStatus(0));
+        System.out.println(dao.getUserByStatus(1));
+        System.out.println(dao.getUserByStatus(0));
 
         dao.closeConnection();
 

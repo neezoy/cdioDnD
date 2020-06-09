@@ -60,7 +60,7 @@ public class RemoveState implements State {
         try {
             int cid =context.dao.getCharacterID(a[0]);
             int gid = context.dao.getGroupID(a[1]);
-            context.dao.removeFromGroup(cid, gid);
+        //    context.dao.removeFromGroup(cid, gid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
