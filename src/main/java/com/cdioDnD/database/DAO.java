@@ -506,11 +506,10 @@ public class DAO implements IDAO {
         character.addGroup(group);
     }
     @Override
-    public void removeFromGroup(int characterid, int groupid) throws SQLException {
-        //TODO: I'm not sure about whether we should remove the relation from the DTO. We probably should, to keep the data consistent.
+    public void removeFromGroup(ICharacterDTO character, IGroupDTO group) throws SQLException {
         try {
 
-            String query = "DELETE FROM GroupRelation WHERE CharacterID = '" + characterid + "' AND GroupID = '" + groupid + "'";
+            String query = "DELETE FROM GroupRelation WHERE CharacterID = '" + character.getID() + "' AND GroupID = '" + group.getID()+ "'";
             PreparedStatement statement = c.prepareStatement(query);
 
             statement.execute();
@@ -519,6 +518,8 @@ public class DAO implements IDAO {
         } catch (SQLException p) {
             throw p;
         }
+        character.removeGroup(group);
+        group.removeCharacter(character);
     }
     @Override
     public ArrayList getGroupIDs(int characterid) throws SQLException {
@@ -793,5 +794,83 @@ public class DAO implements IDAO {
             throw p;
         }
         return characterids;
+    }
+
+    @Override
+    public void addToSession(ICharacterDTO character, ISessionDTO session) throws SQLException {
+
+        try {
+
+            String query = "INSERT INTO SessionRelation (SessionID, CharacterID) VALUES (?, ?)";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.setInt(1, session.getID());
+            statement.setInt(2, character.getID());
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+
+        session.addCharacter(character);
+        character.addSession(session);
+
+    }
+
+    @Override
+    public void removeFromSession(ICharacterDTO character, ISessionDTO session) throws SQLException {
+        try {
+
+            String query = "DELETE FROM GroupRelation WHERE CharacterID = '" + character.getID() + "' AND SessionID = '" + session.getID()+ "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            statement.execute();
+
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        character.removeSession(session);
+        session.removeCharacter(character);
+    }
+
+    @Override
+    public ArrayList getCharacterByStatus(int status) throws SQLException {
+        ArrayList characterids = new ArrayList();
+        try {
+            String query = "SELECT CharacterID FROM `Character` WHERE CStatus ='" + status + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                characterids.add(result.getInt("CharacterID"));
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return characterids;
+    }
+
+    @Override
+    public ArrayList getUserByStatus(int status) throws SQLException {
+        ArrayList userids = new ArrayList();
+        try {
+            String query = "SELECT CharacterID FROM `User` WHERE UStatus ='" + status + "'";
+            PreparedStatement statement = c.prepareStatement(query);
+
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                userids.add(result.getInt("UserID"));
+            }
+
+        } catch (SQLException p) {
+            throw p;
+        }
+        return userids;
     }
 }

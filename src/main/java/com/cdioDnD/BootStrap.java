@@ -1,9 +1,6 @@
 package com.cdioDnD;
 
-import com.cdioDnD.dataTypes.CharacterDTO;
-import com.cdioDnD.dataTypes.ICharacterDTO;
-import com.cdioDnD.dataTypes.IUserDTO;
-import com.cdioDnD.dataTypes.UserDTO;
+import com.cdioDnD.dataTypes.*;
 import com.cdioDnD.database.DAO;
 
 import java.sql.SQLException;
@@ -32,8 +29,12 @@ public class BootStrap {
         //ICharacterDTO character = dao.getCharacter(1003);
         //character.setLocation("wow");
 
+
+
+        SessionDTO iSessionDTO = new SessionDTO("2020-03-20 08:30:00", "Narnia", 8);
+
         // dao.overwriteCharacter(character);
-dao.approveCharacter(dao.getCharacter(1003), true);
+        // dao.approveCharacter(dao.getCharacter(1003), true);
 
         dao.closeConnection();
 

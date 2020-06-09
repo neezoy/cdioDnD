@@ -55,7 +55,7 @@ public interface IDAO {
 
     void addToGroup(ICharacterDTO character, IGroupDTO group) throws SQLException;
 
-    void removeFromGroup(int characterid, int groupid) throws SQLException;
+    void removeFromGroup(ICharacterDTO character, IGroupDTO group) throws SQLException;
 
     ArrayList getGroupIDs(int characterid) throws SQLException;
 
@@ -89,4 +89,12 @@ public interface IDAO {
     ArrayList getSessionIDs(int characterid) throws SQLException;
 
     ArrayList getAttendees(int sessionid) throws SQLException;
+
+    void addToSession(ICharacterDTO character, ISessionDTO session) throws SQLException;
+
+    void removeFromSession(ICharacterDTO character, ISessionDTO session) throws SQLException;
+
+    ArrayList getCharacterByStatus(int status) throws SQLException;
+
+    ArrayList getUserByStatus(int status) throws SQLException;
 }
