@@ -14,8 +14,8 @@ public class DAO implements IDAO {
     private Connection c;
 
     public DAO() {
-        String url = "jdbc:mysql://localhost:3306/cdio?characterEncoding=latin1";
-        String username = "root";
+        String url = "jdbc:mysql://database-1.chwxwa8nyn1v.eu-central-1.rds.amazonaws.com:3306/cdio?characterEncoding=latin1";
+        String username = "master";
         String password = BootStrap.rootPassword;
 
         try {

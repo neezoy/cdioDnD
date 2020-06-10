@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `cdio`.`ItemRelation` (
     REFERENCES `cdio`.`Item` (`ItemID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `CharacterID3`
+  CONSTRAINT `CharacterID4`
     FOREIGN KEY (`CharacterID`)
     REFERENCES `cdio`.`Character` (`CharacterID`)
     ON DELETE NO ACTION
@@ -183,13 +183,12 @@ CREATE TABLE IF NOT EXISTS `cdio`.`SessionRelation` (
 ENGINE = InnoDB;
 
 
-INSERT `Character` (CName, Location, Strength, BonusCapacity) VALUES ( 'Thanos', 'Narnia', 10, 5), ( 'CaptainAmerica', 'Stormwind', 70, 0), ( 'KaelThas', 'Azeroth', 1, 1);
+INSERT `Character` (CName, CLocation, Strength, BonusCapacity) VALUES ( 'Thanos', 'Narnia', 10, 5), ( 'CaptainAmerica', 'Stormwind', 70, 0), ( 'KaelThas', 'Azeroth', 1, 1);
 insert `user` (Username, `Password`, Roles) values ('Zaccie', 1234, 1), ('Wowser', 2843762, 3), ('Bowser', 2828, 2);
 
 insert item (ItemName, Weight, `IDescription`) values ('Logg of gods', 5, 'Insane'), ('Sword of a thousand screams', 1, 'Girly screams'), ('Spear of the barbarian', 5, 'Spear that bastard');
 
 insert `group` (groupname, `Gdescription`) values ('Crusaders', 'Apply here'), ('Method EU', 'L33t'), ('The bois', 'No girls allowed');
-
 
 
 
