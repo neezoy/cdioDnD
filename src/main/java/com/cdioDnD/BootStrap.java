@@ -4,6 +4,7 @@ import com.cdioDnD.dataTypes.*;
 import com.cdioDnD.database.DAO;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BootStrap {
@@ -54,11 +55,7 @@ public class BootStrap {
 
         // dao.overwriteCharacter(character);
         // dao.approveCharacter(dao.getCharacter(1003), true);
-
-        System.out.println(dao.getCharacterByStatus(1));
-        System.out.println(dao.getCharacterByStatus(0));
-        System.out.println(dao.getUserByStatus(1));
-        System.out.println(dao.getUserByStatus(0));
+        System.out.println(dao.getCharacter(1001));
 
         dao.closeConnection();
 
